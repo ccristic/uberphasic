@@ -1,0 +1,39 @@
+@import "colors";
+@import "style";
+
+.navbar {
+	font-weight: 600;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	padding: 0px;
+	height: 65px;
+	line-height: 70px;
+	border-bottom: 1px solid @separator;
+	text-transform: uppercase;
+}
+
+.navbar {
+	li {
+		a {
+			margin-right: 70px;
+			color: @purple;
+			text-decoration: none;
+			padding: 19px 0px;
+			border-bottom: 1px solid @separator;
+			transition: @bezier;
+
+			&.active-navbar {
+				color: @accent;
+				border-bottom: 1px solid @accent;
+				&:hover {
+					border-bottom: 1px solid @accent;
+				}
+			}
+
+			&:hover {
+				border-bottom: 1px solid @purple;
+			}
+		}
+	}
+}

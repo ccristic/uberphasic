@@ -1,0 +1,81 @@
+var schedules = {
+	monophasic: {
+		naps: [
+			{start: 0, stop: 540}
+		]},
+
+	segmented: {
+		naps: [
+			{start: 0, stop: 240},
+			{start: 360, stop: 600}
+		]},
+
+	siesta: {
+		naps: [
+			{start: 0, stop: 360},
+			{start: 877.5, stop: 922.5}
+		]},
+
+	triphasic: {
+		naps: [
+			{start: 0, stop: 90},
+			{start: 480, stop: 570},
+			{start: 960, stop: 1050}
+		]},
+
+	dual_core: {
+		naps: [
+			{start: 0, stop: 210}, 
+			{start: 450, stop: 540}, 
+			{start: 1020, stop: 1040}
+		]},
+
+	dymaxion: {
+		naps: [
+			{start: 0, stop: 30}, 
+			{start: 360, stop: 390}, 
+			{start: 720, stop: 750}, 
+			{start: 1080, stop: 1110}
+		]},
+
+	spamayl: {
+		naps: [
+			{start: 0, stop: 20}, 
+			{start: 120, stop: 140}, 
+			{start: 240, stop: 260},
+			{start: 360, stop: 380}, 
+			{start: 480, stop: 500}, 
+			{start: 660, stop: 680},
+			{start: 960, stop: 980},
+			{start: 1260, stop: 1280}
+
+		]},
+
+	uberman: {
+		naps: [
+			{start: 0, stop: 20}, 
+			{start: 240, stop: 260}, 
+			{start: 480, stop: 500},
+			{start: 720, stop: 740}, 
+			{start: 960, stop: 980}, 
+			{start: 1200, stop: 1220}
+		]}
+};
+
+var monophasic = {
+	naps: [
+		{start: 0, stop: 480}
+	]
+};
+
+var uberman = {
+	naps: [
+		{start: 0, stop: 20}, 
+		{start: 240, stop: 260}, 
+		{start: 480, stop: 500},
+		{start: 720, stop: 740}, 
+		{start: 960, stop: 980}, 
+		{start: 1200, stop: 1220}
+	]
+
+};

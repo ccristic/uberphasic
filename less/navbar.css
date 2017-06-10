@@ -1,0 +1,60 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Hind', sans-serif;
+  font-size: 14px;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.pointer {
+  cursor: pointer;
+}
+.default {
+  cursor: default;
+}
+.navbar {
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  height: 65px;
+  line-height: 70px;
+  border-bottom: 1px solid #3f4064;
+  text-transform: uppercase;
+}
+.navbar li a {
+  margin-right: 70px;
+  color: #7a7cc7;
+  text-decoration: none;
+  padding: 19px 0px;
+  border-bottom: 1px solid #3f4064;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navbar li a.active-navbar {
+  color: #1dffa7;
+  border-bottom: 1px solid #1dffa7;
+}
+.navbar li a.active-navbar:hover {
+  border-bottom: 1px solid #1dffa7;
+}
+.navbar li a:hover {
+  border-bottom: 1px solid #7a7cc7;
+}
