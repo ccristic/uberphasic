@@ -2,7 +2,7 @@ var schedules = {
 	monophasic: {
 		naps: [
 			{start: 0, stop: 540}
-		]
+		],
 		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
 	},
 
