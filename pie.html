@@ -55,6 +55,11 @@
 
             canvasContainer.appendChild(canvas);  
             document.body.appendChild(canvasContainer);
+
+            canvas = document.createElement('div');
+            canvasContainer = document.createTestNode('hi');
+            canvas.appendChild(canvasContainer);
+            document.body.appendChild(canvas);
         }
 
         function app() {
