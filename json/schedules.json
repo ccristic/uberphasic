@@ -11,7 +11,7 @@ var schedules = {
 			{start: 0, stop: 240},
 			{start: 360, stop: 600}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "Historically human beings naturally slept in two distinct phases, with a period of wakefulness separating the two phases. There is evidence from sleep research, as well as from the reports of individuals, that this bi-modal sleep pattern, combined with a midday nap results in the experience of greater wakefulness during the day time, than uninterrupted sleep. During that period of wakefulness, the brain secretes high levels of prolactin, a hormone associated with a feeling of calm and well-being."
 	},
 
 	siesta: {
@@ -19,7 +19,7 @@ var schedules = {
 			{start: 0, stop: 360},
 			{start: 877.5, stop: 922.5}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "Siesta sleep schedules are the most common of the polyphasic schedules, involving sleeping in two separate segments throughout the day – once at night, and a nap in the middle of the day. There are three distinct biphasic schedules, the ‘power siesta’ schedule which involves sleeping for 20 minutes in the middle of the day and between 5-6 hours at night (varies between invididuals), and the more common ‘long siest’ involving 4.5-5.5 hours at night and a 60-90 minute sleep during the day, and of course segmented sleep."
 	},
 
 	triphasic: {
@@ -28,7 +28,7 @@ var schedules = {
 			{start: 480, stop: 570},
 			{start: 960, stop: 1050}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "Triphasic is a fairly simple polyphasic sleep schedule to acclimate to. The most important thing to do when setting up a triphasic sleep schedule is to make sure that the 3 naps are at times of the day that line up with your circadian rhythm. This means that one nap should be taken an hour or two after dusk, when the hormone melatonin is reaching high levels, one nap should be taken 30 minutes to an hour before dawn, and have you waking up after the sun rises, so your body is natural aroused by the morning daylight, and a third nap should be taken sometime between the hours of 1 pm and 4 pm, where your alertness naturally drops, allowing you to sleep."
 	},
 
 	dual_core: {
@@ -37,7 +37,7 @@ var schedules = {
 			{start: 450, stop: 540}, 
 			{start: 1020, stop: 1040}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "We now know that both having an afternoon nap, and having segmented night sleep is healthy. It only makes sense then, that borrowing ideas from the best of both worlds can make a better schedule. Segmenting your night sleep into two periods (dusk sleep prepared by natural lighting and graveyard hour sleep) can give you waking time at night, and napping throughout the mornings and days can reduce your overall need for sleep."
 	},
 
 	dymaxion: {
@@ -47,7 +47,7 @@ var schedules = {
 			{start: 720, stop: 750}, 
 			{start: 1080, stop: 1110}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "Dymaxion is one of the most formidable sleep schedules on the market. It’s predicted that only the genetically mutated DEC2 gene ‘very short sleepers’ can be successful following such a schedule, because people with this gene are able to sleep only 4 hours monophasically, which is a considerable feat on it’s own. These people do not suffer from sleep deprivation because their sleep compression and sleep quality are naturally so good! The whole idea of a reduced sleep schedule is to improve sleep compression and sleep quality, so that one may get all the normal deep sleep and REM sleep on less total sleep, just like a DEC2 mutant. Unforunately it is estimated less than 1% of the world population has this gene."
 	},
 
 	spamayl: {
@@ -62,7 +62,7 @@ var schedules = {
 			{start: 1260, stop: 1280}
 
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "SPAMAYL (Sleep Polyphasically As Much As You Like) is a fancy way of saying free-running sleep, or simply “take a 20 minute nap whenever you feel tired”.  The adaptation for this is almost identical to Uberman (except one can take more naps), but afterward the schedule is more flexible than traditional Uberman. During adaptation it is imperative that the nap times are kept rigid (using either the 3 or 4 hour rhythm) – the common mistake with SPAMAYL is that people think it is flexible during the adaptation. it is not. One can do a naptation to kickstart a SPAMAYL adaptation, but like Uberman there is ~2 weeks of impaired cognitive function while one gets used to the schedule."
 	},
 
 	uberman: {
@@ -74,6 +74,6 @@ var schedules = {
 			{start: 960, stop: 980}, 
 			{start: 1200, stop: 1220}
 		],
-		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+		description: "The Uberman Sleep Schedule (coined by Puredoxyk, the first Uberman sleeper) is a sleep schedule consisting entirely of 20 minute naps, spaced equidistant throughout the day. In its traditional form Uberman is 6 equidistant naps throughout each day. There is nothing known about the long term health effects of being an Uberman, although there have been people who sustained the schedule for as long as a year with no serious health issues. No one has EVER adapted to Uberman without the help of others, often in the form of a human alarm system. A 6 nap schedule (2h total sleep) will consist of a nap every 4h, it will have a 2h BRAC and a 4h rhythm. An 8 nap schedule (2h40min total sleep) will consist of a nap every 3h, it will have a 1.5h BRAC and a 3h rhythm."
 	}
 };
