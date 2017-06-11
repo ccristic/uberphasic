@@ -10,27 +10,35 @@ var schedules = {
 		naps: [
 			{start: 0, stop: 240},
 			{start: 360, stop: 600}
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	siesta: {
 		naps: [
 			{start: 0, stop: 360},
 			{start: 877.5, stop: 922.5}
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	triphasic: {
 		naps: [
 			{start: 0, stop: 90},
 			{start: 480, stop: 570},
 			{start: 960, stop: 1050}
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	dual_core: {
 		naps: [
 			{start: 0, stop: 210}, 
 			{start: 450, stop: 540}, 
 			{start: 1020, stop: 1040}
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	dymaxion: {
 		naps: [
@@ -38,7 +46,9 @@ var schedules = {
 			{start: 360, stop: 390}, 
 			{start: 720, stop: 750}, 
 			{start: 1080, stop: 1110}
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	spamayl: {
 		naps: [
@@ -51,7 +61,9 @@ var schedules = {
 			{start: 960, stop: 980},
 			{start: 1260, stop: 1280}
 
-		]},
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	},
 
 	uberman: {
 		naps: [
@@ -61,23 +73,7 @@ var schedules = {
 			{start: 720, stop: 740}, 
 			{start: 960, stop: 980}, 
 			{start: 1200, stop: 1220}
-		]}
-};
-
-var monophasic = {
-	naps: [
-		{start: 0, stop: 480}
-	]
-};
-
-var uberman = {
-	naps: [
-		{start: 0, stop: 20}, 
-		{start: 240, stop: 260}, 
-		{start: 480, stop: 500},
-		{start: 720, stop: 740}, 
-		{start: 960, stop: 980}, 
-		{start: 1200, stop: 1220}
-	]
-
+		],
+		description: "Though most people will average around eight hours of sleep at night, which is about one third of the average human life, few people actually know anything about sleep. They might suffer insomnia, sleep apnea, extreme fatigue even after adequate sleep, and they do not question sleep itself. Many believe that they “do not dream,” when in reality they simply do not remember their dreams. Because sleep is essential to human function, and because so much time is dedicated to it, it is important to learn as much about sleep as possible."
+	}
 };
