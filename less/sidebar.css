@@ -8,6 +8,11 @@ body {
   font-family: 'Hind', sans-serif;
   font-size: 14px;
 }
+h1,
+p,
+table {
+  font-family: 'Hind', sans-serif;
+}
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -37,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.2);
+  position: fixed;
 }
 .wrapper {
   background-color: #2f304e;
@@ -44,6 +50,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0px 70px;
+  margin-left: 70px;
+  min-height: 100vh;
 }
 .menu-icons {
   list-style: none;
@@ -109,7 +117,7 @@ a.active-icon {
   font-family: Glyphter;
   background-color: #1dffa7;
   color: #2f304e;
-  padding: 15px;
+  padding: 17px;
   line-height: 66px;
   font-size: 36px;
   text-align: center;

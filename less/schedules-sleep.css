@@ -1,0 +1,25 @@
+.schedule_list {
+  display: flex;
+  flex-direction: row;
+  padding: 30px 0px;
+}
+.schedule_pie {
+  width: 15%;
+  min-width: 250px;
+}
+.schedule_title {
+  font-size: 22px;
+  font-weight: 600;
+  flex-direction: column;
+  color: white;
+  line-height: 40px;
+}
+.schedule_text {
+  width: 85%;
+  flex-direction: column;
+  margin: 30px 30px 0px 30px;
+}
+.schedule_description {
+  color: white;
+  line-height: 24px;
+}
