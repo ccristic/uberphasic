@@ -1,0 +1,22 @@
+.axis path {
+  fill: none;
+  stroke: grey;
+  shape-rendering: crispEdges;
+}
+rect.bar.nap {
+  fill: #ffce0a;
+}
+rect.bar.core {
+  fill: #ff3f68;
+}
+.tick {
+  font-family: 'Hind', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  fill: #7a7cc7;
+}
+path.domain {
+  fill: none;
+  stroke: #7a7cc7;
+  shape-rendering: crispEdges;
+}
