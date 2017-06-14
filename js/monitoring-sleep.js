@@ -219,11 +219,13 @@ function addTask(task) {
 	.attr("y",function(d) { 
 		return y(d3.time.day.floor(new Date(d.start)))
 	})
+
 	.attr("width",function(d){
 		var hstart = new Date(d.start),
 		hstop = new Date(d.stop);
 		return x((hstop-hstart)/3600000);	//date operations return a timestamp in miliseconds, divide to convert to hours
 	})
+
 	.attr("height",12)
 	.attr("rx",7)
 	.attr("ry",15)
@@ -233,6 +235,9 @@ function addTask(task) {
 	
 	.text(function(d){return(d.start)+' - '+(d.stop);})
 	.datum(function(d){return Date.parse(d)});
+
+	d3.selectAll('rect').transition()
+	.duration(2000)
 };
 
 function addDefaultTask(task) {
