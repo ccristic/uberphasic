@@ -6,15 +6,15 @@
 	shape-rendering:crispEdges;
 }
 rect.bar.nap {
-	fill:@nap;
+	fill:@core;
+}
+
+rect.bar.core {
+	fill: @nap;
 }
 
 rect.default_bar {
 	opacity: 0.2;
-}
-
-rect.bar.core {
-	fill: @core;
 }
 
 .tick {
@@ -52,4 +52,35 @@ path.domain {
 	border-color: @accent !important;
 	color: black !important;
 	font-weight: 600 !important;
+}
+
+.d3-tip {
+	font-family: 'Hind', sans-serif;
+	font-weight: 600;
+	line-height: 1;
+	font-weight: bold;
+	padding: 12px;
+	background: rgba(0, 0, 0, 0.9);
+	color: #fff;
+	border-radius: 4px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+	box-sizing: border-box;
+	display: inline;
+	font-size: 10px;
+	width: 100%;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.8);
+	content: "\25BC";
+	position: absolute;
+	text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+	margin: -1px 0 0 0;
+	top: 100%;
+	left: 0;
 }

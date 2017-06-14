@@ -42,32 +42,44 @@
 	
     <script>
         function getChartDataFromSchedule(schedule) {
-            var hours = [], colors = [];
+            var hours = [], colors = [], labels = [];
             for (var i = 0; i < schedule.naps.length; i++) {
                 hours.push((schedule.naps[i].stop - schedule.naps[i].start)/60);
 
-                if(hours[hours.length-1] <= 1)
-                    colors.push('#ff3f68');
-                else
+                if(hours[hours.length-1] <= 1) {
+                    labels.push(' Nap');
+                    colors.push('#ff3f68'); 
+                }
+                else {
+                    labels.push(' Core');
                     colors.push('#ffce0a');
+                }
 
                 if (i< schedule.naps.length - 1) {
                     hours.push((schedule.naps[i+1].start - schedule.naps[i].stop)/60); 
                     colors.push('#3b3c5b');
+                    labels.push(' Awake');
                 }
                 else { 
                     hours.push((1440 - schedule.naps[i].stop)/60); 
-                    colors.push('#3b3c5b');    
+                    colors.push('#3b3c5b'); 
+                    labels.push(' Awake');   
                 }
             }
             return {
                 type: 'pie',
+                options: {
+                    legend: {
+                        display: false
+                    }
+                },
                 data: {
                     datasets: [{
                         data: hours,
                         backgroundColor: colors,                        
                         borderWidth: 0
-                    }]
+                    }],
+                    labels: labels
                 }
             };
         }
