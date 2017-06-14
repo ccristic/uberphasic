@@ -6,6 +6,9 @@
 rect.bar.nap {
   fill: #ffce0a;
 }
+rect.default_bar {
+  opacity: 0.2;
+}
 rect.bar.core {
   fill: #ff3f68;
 }
@@ -19,4 +22,25 @@ path.domain {
   fill: none;
   stroke: #7a7cc7;
   shape-rendering: crispEdges;
+}
+.add_sleep {
+  display: flex;
+  margin-top: 30px;
+}
+.flatpickr-input {
+  margin-right: 20px;
+}
+.flatpickr-time,
+.flatpickr-calendar {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  top: 150px !important;
+}
+.flatpickr-day.selected {
+  background-color: #1dffa7 !important;
+  border-color: #1dffa7 !important;
+  color: black !important;
+  font-weight: 600 !important;
 }

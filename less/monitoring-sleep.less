@@ -9,6 +9,10 @@ rect.bar.nap {
 	fill:@nap;
 }
 
+rect.default_bar {
+	opacity: 0.2;
+}
+
 rect.bar.core {
 	fill: @core;
 }
@@ -24,4 +28,28 @@ path.domain {
 	fill: none;
 	stroke: @purple;
 	shape-rendering: crispEdges;
+}
+
+.add_sleep {
+	display: flex;
+	margin-top: 30px;
+}
+
+.flatpickr-input {
+	margin-right: 20px;
+}
+
+.flatpickr-time, .flatpickr-calendar {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	border: none !important;
+	top: 150px !important;
+}
+
+.flatpickr-day.selected {
+	background-color: @accent !important;
+	border-color: @accent !important;
+	color: black !important;
+	font-weight: 600 !important;
 }

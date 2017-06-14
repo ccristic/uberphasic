@@ -94,8 +94,14 @@ var data = [
 	{"start":"2017-06-17 04:00:00","stop":"2017-06-17 04:25:00"},
 	{"start":"2017-06-17 11:45:00","stop":"2017-06-17 14:15:00"},
 	{"start":"2017-06-17 18:00:00","stop":"2017-06-17 18:45:00"},
-	{"start":"2017-06-17 21:30:00","stop":"2017-06-17 23:55:00"},
+	{"start":"2017-06-17 21:30:00","stop":"2017-06-17 23:55:00"}
+];
 
+var mySchedule = [
+	{"start":"01:10:00","stop":"01:40:00"},
+	{"start":"12:00:00","stop":"14:20:00"},
+	{"start":"04:00:00","stop":"04:50:00"},
+	{"start":"21:00:00","stop":"23:20:00"}
 ];
 
 var first = d3.time.day.floor( new Date(data[0].start)),
@@ -106,7 +112,7 @@ d3.max(data,function(d){
 	return d3.time.day.ceil(new Date(d.stop))})];
 
 var m = {top: 40, right: 20, bottom: 20, left: 60},
-width = window.innerWidth*.8,
+width = window.innerWidth*.7,
 barSize = 12,
 height = ((dRange[1]-dRange[0])/(24*60*60*1000))* barSize + 150;
 
@@ -148,6 +154,7 @@ function viewBars (data) {
 
 	/* add bars to chart */
 
+	addDefaultValues();
 	for (var i = 0; i < data.length; i++) {
 		addTask(data[i]);
 	}
@@ -218,6 +225,58 @@ function addTask(task) {
 	.text(function(d){return(d.start)+' - '+(d.stop);})
 	.datum(function(d){return Date.parse(d)})
 	;
+};
+
+function addDefaultTask(task) {
+	hour = d3.time.format("%X"),
+	ganttSvg.append("g")
+	.attr("class","chart")
+	.selectAll("rect")
+	.data([task])
+	.enter()
+	.append("rect")
+	.attr("class",function(d){
+		var c = moment(d.stop).diff(d.start, 'minutes');
+		if(c <= 60)
+			return("bar nap default_bar");
+		else
+			return("bar core default_bar");
+	})
+
+	.attr("x",function(d){
+		var h = hour(new Date(d.start)).split(":"), //changes datum from string, to proper Date Object, back to hour string and splits
+		xh = parseFloat(h[0])+parseFloat(h[1]/60); //time (hour and minute) as decimal
+		return x(xh);a
+	})
+	.attr("y",function(d) { 
+		return y(d3.time.day.floor(new Date(d.start)))
+	})
+	.attr("width",function(d){
+		var hstart = new Date(d.start),
+		hstop = new Date(d.stop);
+		return x((hstop-hstart)/3600000);	//date operations return a timestamp in miliseconds, divide to convert to hours
+	})
+	.attr("height",12)
+	.attr("rx",0)
+	.attr("ry",0)
+	.append("svg:title")
+	.text(function(d){return(d.start)+' - '+(d.stop);})
+	.datum(function(d){return Date.parse(d)})
+	;
+};
+
+function addDefaultValues() {
+	var interval;
+
+	for(var p = moment(first).add(1,'days').format("YYYY-MM-DD"); p < moment(last).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
+	{
+		for(var y = 0; y < mySchedule.length; y++)
+		{	
+
+			interval = {start: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].start, stop: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].stop};
+			addDefaultTask(interval);
+		}
+	}
 };
 
 function addTaskFromUI(nap) {
