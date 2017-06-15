@@ -1,3 +1,5 @@
+
+
 function edit_row(no)
 {
 	document.getElementById("edit_button"+no).style.display="none";
@@ -14,6 +16,20 @@ function edit_row(no)
 	name.innerHTML="<input type='text' id='name_text"+no+"' class='flatpickr-data' value='"+name_data+"'>";
 	country.innerHTML="<input type='text' id='country_text"+no+"' class='flatpickr-ora' value='"+country_data+"'>";
 	age.innerHTML="<input type='text' id='age_text"+no+"' class='flatpickr-ora' value='"+age_data+"'>";
+
+	flatpickr('.flatpickr-data', {
+		defaultDate: moment().format("YYYY-MM-DD")
+	});
+
+	flatpickr('.flatpickr-ora', {
+		enableTime: true,
+		noCalendar: true,
+		time_24hr: true,
+		dateFormat: "H:i",
+		defaultDate: "0:00", 
+		defaultHour: 0,
+		defaultMinute: 0
+	});
 }
 
 function save_row(no)
@@ -44,4 +60,6 @@ function add_row()
 	var table=document.getElementById("data_table");
 	var table_len=(table.rows.length)-1;
 	var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td id='country_row"+table_len+"'>"+new_country+"</td><td id='age_row"+table_len+"'>"+new_age+"</td><td><button type='button' id='edit_button"+table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</button> <button type='button' id='save_button"+table_len+"' class='save' style='display: none' onclick='save_row("+table_len+")'>Save</button> <button type='button' class='delete' onclick='delete_row("+table_len+")'>Delete</button></td></tr>";
+
 }
+

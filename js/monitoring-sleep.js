@@ -103,7 +103,6 @@ var mySchedule = [
 {"start":"04:00:00","stop":"04:50:00"},
 {"start":"21:00:00","stop":"23:20:00"}
 ];
-
 var first = d3.time.day.floor( new Date(data[0].start)),
 last = d3.time.day.ceil( new Date(data[data.length-1].stop)),
 dRange = [d3.min(data,function(d){

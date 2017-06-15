@@ -1,8 +1,17 @@
     
-var title="Migrant deaths in the Mediterranean";
+var title="Scor";
 var units=" dead or missing";
 var breaks=[10,25,50,75];
 var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0.6)","rgba(29,255,167, 0.8)","rgba(29,255,167, 1)"];
+
+
+var tip = d3.tip()
+.attr('class', 'd3-tip')
+.offset([-10, 0])
+.html(function(d) {
+    return "<strong>Date:</strong> <span style='color:#7a7cc7'>" + moment(d.date).format("YYYY/MM/DD") + " </span> </br> <strong>Score: </strong><span style='color:#7a7cc7'>" + d.value + "</span>";
+
+})
 
     //general layout information
     var cellSize = 17;
@@ -45,6 +54,7 @@ var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0
         .attr("x",xOffset)
         .attr("y",20)
         .text(title);
+        svg.call(tip);
         
         //create an SVG group for each year
         var cals = svg.selectAll("g")
@@ -54,6 +64,7 @@ var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0
         .attr("id",function(d){
             return d.key;
         })
+
         .attr("transform",function(d,i){
             return "translate(0,"+(yOffset+(i*(height+calY)))+")";  
         })
@@ -77,6 +88,7 @@ var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0
         .attr("class", "day")
         .attr("width", cellSize)
         .attr("height", cellSize)
+        
         .attr("x", function(d) {
             return xOffset+calX+(d3.time.weekOfYear(d) * cellSize);
         })
@@ -102,6 +114,7 @@ var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0
         .data(function(d){
             return d.values;   
         })
+
         .enter()
         .append("rect")
         .attr("id",function(d) {
@@ -112,6 +125,8 @@ var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0
         .attr("height",cellSize)
         .attr("x", function(d){return xOffset+calX+(d3.time.weekOfYear(d.date) * cellSize);})
         .attr("y", function(d) { return calY+(d.date.getDay() * cellSize); })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
         .attr("fill", function(d) {
             if (d.value<breaks[0]) {
                 return colours[0];
