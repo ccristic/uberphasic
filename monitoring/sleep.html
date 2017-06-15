@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 	<script src="https://unpkg.com/flatpickr"></script>
 	
+	<script type="text/javascript" src="../js/table_script.js"></script>
+
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src="../js/d3.tip.v0.6.3.js"></script>
 
@@ -44,10 +46,38 @@
 			<input id="calendar" class="flatpickr-data" type="text">
 			<input id="start-nap" class="flatpickr-ora" type="text">
 			<input id="stop-nap" class="flatpickr-ora" type="text"> 
-			<button type="button" onclick="takeNapValuesFromInputs()">Add Task</button>
+			<button type="button" onclick="takeNapValuesFromInputs(); add_row()">Add Task</button>
 		</div>
 		<script src="../js/monitoring-sleep.js"></script>
 		
-</div>
+		<table align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
+			<tr>
+				<th>Name</th>
+				<th>Country</th>
+				<th>Age</th>
+			</tr>
+			<tr id="row1">
+				<td id="name_row1">Ankit</td>
+				<td id="country_row1">India</td>
+				<td id="age_row1">20</td>
+				<td>
+				<button type="button" id="edit_button1" class="edit" onclick="edit_row('1')">Edit</button>
+					<button type="button" id="save_button1" class="save" onclick="save_row('1')">Save</button>
+					<button type="button" class="delete" onclick="delete_row('1')">Delete</button>
+				</td>
+			</tr>
+			<tr id="row2">
+				<td id="name_row2">Ankit</td>
+				<td id="country_row2">India</td>
+				<td id="age_row2">20</td>
+				<td>
+				<button type="button" id="edit_button2" class="edit" onclick="edit_row('2')">Edit</button>
+					<button type="button" id="save_button2" class="save" onclick="save_row('2')">Save</button>
+					<button type="button" class="delete" onclick="delete_row('2')">Delete</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
 </body>
 </html>

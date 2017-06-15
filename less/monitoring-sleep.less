@@ -1,4 +1,5 @@
 @import "colors";
+@import "style";
 
 .axis path {
 	fill:none;
@@ -83,4 +84,18 @@ path.domain {
 	margin: -1px 0 0 0;
 	top: 100%;
 	left: 0;
+}
+
+button.edit, button.save, button.delete {
+	border-radius: 4px;
+	background-color: @sidebar-color;
+	color: @purple;
+	margin-left: 5px;
+	text-transform: capitalize;
+}
+
+button:hover {
+  background-color: @purple;
+  color: white;
+  transition: @bezier;
 }
