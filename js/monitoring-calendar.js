@@ -5,7 +5,7 @@ var breaks=[10,25,50,75];
 var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0.6)","rgba(29,255,167, 0.8)","rgba(29,255,167, 1)"];
 
 
-var tip = d3.tip()
+var tip = d3.tip()  
 .attr('class', 'd3-tip')
 .offset([-10, 0])
 .html(function(d) {
