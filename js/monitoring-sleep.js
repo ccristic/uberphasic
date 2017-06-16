@@ -230,9 +230,6 @@ function addTask(task) {
 	.attr("ry",15)
 	.on('mouseover', tip.show)
 	.on('mouseout', tip.hide)
-	.append("svg:title")
-	
-	.text(function(d){return(d.start)+' - '+(d.stop);})
 	.datum(function(d){return Date.parse(d)});
 
 	d3.selectAll('rect').transition()

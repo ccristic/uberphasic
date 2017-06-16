@@ -139,11 +139,7 @@ var tip = d3.tip()
             if (d.value>breaks.length-1){
                 return colours[breaks.length]   
             }
-        })
-        
-        //append a title element to give basic mouseover info
-        dataRects.append("title")
-        .text(function(d) { return toolDate(d.date)+":\n"+d.value+units; });
+        })     
         
         //add montly outlines for calendar
         cals.append("g")
