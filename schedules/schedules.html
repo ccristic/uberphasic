@@ -37,8 +37,11 @@
 			</ul>
 		</div>
 	</div>
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 
+    <script src="../js/firebase-config.js"></script>
 
+    <script type="text/javascript" src="../js/verify-connected-user.js"></script>
 	
     <script>
         function getChartDataFromSchedule(schedule) {
@@ -118,21 +121,39 @@
             canvasContainer = document.createTextNode(schedules[canvasId].description);
             canvas.appendChild(canvasContainer);
 
-            
+            text_wrapper.appendChild(canvas);
+            scheduleList.appendChild(text_wrapper);
+
+            canvas = document.createElement('button');
+            canvas.className = "apply_button";
+            canvas.setAttribute('schedule', canvasId);
+            canvas.addEventListener("click", assignScheduleToUser);
+            canvasContainer = document.createTextNode('Apply');
+            canvas.appendChild(canvasContainer);            
 
             text_wrapper.appendChild(canvas);
             scheduleList.appendChild(text_wrapper);
         }
 
-        function app() {
+        function app(user) {
             for (scheduleId in schedules) {
                 createContainer(scheduleId);
                 createChart(schedules[scheduleId], scheduleId);
             }
         }
+
+        function assignScheduleToUser(event) {
+            console.log(event.target.getAttribute('schedule'));
+            firebase.database().ref('schedule_settings/' + currentUser.uid).set({
+                schedule: event.target.getAttribute('schedule')
+              }).then(function(res) {
+                window.location = '../monitoring/my-schedule.html';
+              });
+            
+        }
     </script>
     <script>
-        app();
+        verifyIfConnected(app);
     </script>
 </body>
 </html>

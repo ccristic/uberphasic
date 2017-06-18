@@ -1,108 +1,106 @@
 var data = [
-{"start":"2017-05-31 00:00:00","stop":"2017-05-31 00:00:00"},
+{"start":"2017/05/31 00:00:00","stop":"2017/05/31 00:00:00"},
 
-{"start":"2017-06-01 01:00:00","stop":"2017-06-01 01:15:00"},
-{"start":"2017-06-01 04:00:00","stop":"2017-06-01 04:25:00"},
-{"start":"2017-06-01 11:45:00","stop":"2017-06-01 14:15:00"},
-{"start":"2017-06-01 18:00:00","stop":"2017-06-01 18:45:00"},
-{"start":"2017-06-01 20:30:00","stop":"2017-06-01 23:55:00"},
+{"start":"2017/06/01 01:00:00","stop":"2017/06/01 01:15:00"},
+{"start":"2017/06/01 04:00:00","stop":"2017/06/01 04:25:00"},
+{"start":"2017/06/01 11:45:00","stop":"2017/06/01 14:15:00"},
+{"start":"2017/06/01 18:00:00","stop":"2017/06/01 18:45:00"},
+{"start":"2017/06/01 20:30:00","stop":"2017/06/01 23:55:00"},
 
-{"start":"2017-06-02 01:00:00","stop":"2017-06-02 01:15:00"},
-{"start":"2017-06-02 04:05:00","stop":"2017-06-02 04:25:00"},
-{"start":"2017-06-02 11:45:00","stop":"2017-06-02 14:15:00"},
-{"start":"2017-06-02 21:00:00","stop":"2017-06-02 23:55:00"},
+{"start":"2017/06/02 01:00:00","stop":"2017/06/02 01:15:00"},
+{"start":"2017/06/02 04:05:00","stop":"2017/06/02 04:25:00"},
+{"start":"2017/06/02 11:45:00","stop":"2017/06/02 14:15:00"},
+{"start":"2017/06/02 21:00:00","stop":"2017/06/02 23:55:00"},
 
-{"start":"2017-06-03 01:00:00","stop":"2017-06-03 01:15:00"},
-{"start":"2017-06-03 03:00:00","stop":"2017-06-03 03:25:00"},
-{"start":"2017-06-03 11:25:00","stop":"2017-06-03 15:15:00"},
-{"start":"2017-06-03 18:15:00","stop":"2017-06-03 18:25:00"},
-{"start":"2017-06-03 21:30:00","stop":"2017-06-03 22:55:00"},
+{"start":"2017/06/03 01:00:00","stop":"2017/06/03 01:15:00"},
+{"start":"2017/06/03 03:00:00","stop":"2017/06/03 03:25:00"},
+{"start":"2017/06/03 11:25:00","stop":"2017/06/03 15:15:00"},
+{"start":"2017/06/03 18:15:00","stop":"2017/06/03 18:25:00"},
+{"start":"2017/06/03 21:30:00","stop":"2017/06/03 22:55:00"},
 
-{"start":"2017-06-04 01:00:00","stop":"2017-06-04 01:15:00"},
-{"start":"2017-06-04 04:10:00","stop":"2017-06-04 04:25:00"},
-{"start":"2017-06-04 07:40:00","stop":"2017-06-04 08:25:00"},
-{"start":"2017-06-04 18:00:00","stop":"2017-06-04 18:45:00"},
-{"start":"2017-06-04 21:35:00","stop":"2017-06-04 23:55:00"},
+{"start":"2017/06/04 01:00:00","stop":"2017/06/04 01:15:00"},
+{"start":"2017/06/04 04:10:00","stop":"2017/06/04 04:25:00"},
+{"start":"2017/06/04 07:40:00","stop":"2017/06/04 08:25:00"},
+{"start":"2017/06/04 18:00:00","stop":"2017/06/04 18:45:00"},
+{"start":"2017/06/04 21:35:00","stop":"2017/06/04 23:55:00"},
 
-{"start":"2017-06-05 01:00:00","stop":"2017-06-05 01:15:00"},
-{"start":"2017-06-05 04:15:00","stop":"2017-06-05 04:25:00"},
-{"start":"2017-06-05 12:45:00","stop":"2017-06-05 14:15:00"},
-{"start":"2017-06-05 18:00:00","stop":"2017-06-05 18:45:00"},
-{"start":"2017-06-05 21:30:00","stop":"2017-06-05 23:45:00"},
+{"start":"2017/06/05 01:00:00","stop":"2017/06/05 01:15:00"},
+{"start":"2017/06/05 04:15:00","stop":"2017/06/05 04:25:00"},
+{"start":"2017/06/05 12:45:00","stop":"2017/06/05 14:15:00"},
+{"start":"2017/06/05 18:00:00","stop":"2017/06/05 18:45:00"},
+{"start":"2017/06/05 21:30:00","stop":"2017/06/05 23:45:00"},
 
-{"start":"2017-06-06 01:00:00","stop":"2017-06-06 01:15:00"},
-{"start":"2017-06-06 04:00:00","stop":"2017-06-06 04:25:00"},
-{"start":"2017-06-06 13:45:00","stop":"2017-06-06 14:25:00"},
-{"start":"2017-06-06 18:00:00","stop":"2017-06-06 18:45:00"},
-{"start":"2017-06-06 21:30:00","stop":"2017-06-06 22:55:00"},
+{"start":"2017/06/06 01:00:00","stop":"2017/06/06 01:15:00"},
+{"start":"2017/06/06 04:00:00","stop":"2017/06/06 04:25:00"},
+{"start":"2017/06/06 13:45:00","stop":"2017/06/06 14:25:00"},
+{"start":"2017/06/06 18:00:00","stop":"2017/06/06 18:45:00"},
+{"start":"2017/06/06 21:30:00","stop":"2017/06/06 22:55:00"},
 
-{"start":"2017-06-07 04:00:00","stop":"2017-06-07 04:25:00"},
-{"start":"2017-06-07 11:45:00","stop":"2017-06-07 14:15:00"},
-{"start":"2017-06-07 21:30:00","stop":"2017-06-07 22:55:00"},
+{"start":"2017/06/07 04:00:00","stop":"2017/06/07 04:25:00"},
+{"start":"2017/06/07 11:45:00","stop":"2017/06/07 14:15:00"},
+{"start":"2017/06/07 21:30:00","stop":"2017/06/07 22:55:00"},
 
-{"start":"2017-06-08 01:00:00","stop":"2017-06-08 01:15:00"},
-{"start":"2017-06-08 04:00:00","stop":"2017-06-08 04:25:00"},
-{"start":"2017-06-08 11:45:00","stop":"2017-06-08 15:15:00"},
-{"start":"2017-06-08 18:00:00","stop":"2017-06-08 18:45:00"},
+{"start":"2017/06/08 01:00:00","stop":"2017/06/08 01:15:00"},
+{"start":"2017/06/08 04:00:00","stop":"2017/06/08 04:25:00"},
+{"start":"2017/06/08 11:45:00","stop":"2017/06/08 15:15:00"},
+{"start":"2017/06/08 18:00:00","stop":"2017/06/08 18:45:00"},
 
-{"start":"2017-06-09 01:00:00","stop":"2017-06-09 01:15:00"},
-{"start":"2017-06-09 04:05:00","stop":"2017-06-09 04:25:00"},
-{"start":"2017-06-09 11:45:00","stop":"2017-06-09 14:55:00"},
-{"start":"2017-06-09 17:00:00","stop":"2017-06-09 18:45:00"},
-{"start":"2017-06-09 21:30:00","stop":"2017-06-09 23:55:00"},
+{"start":"2017/06/09 01:00:00","stop":"2017/06/09 01:15:00"},
+{"start":"2017/06/09 04:05:00","stop":"2017/06/09 04:25:00"},
+{"start":"2017/06/09 11:45:00","stop":"2017/06/09 14:55:00"},
+{"start":"2017/06/09 17:00:00","stop":"2017/06/09 18:45:00"},
+{"start":"2017/06/09 21:30:00","stop":"2017/06/09 23:55:00"},
 
-{"start":"2017-06-10 01:00:00","stop":"2017-06-10 01:25:00"},
-{"start":"2017-06-10 04:00:00","stop":"2017-06-10 04:25:00"},
-{"start":"2017-06-10 18:00:00","stop":"2017-06-10 18:40:00"},
-{"start":"2017-06-10 21:30:00","stop":"2017-06-10 23:55:00"},
+{"start":"2017/06/10 01:00:00","stop":"2017/06/10 01:25:00"},
+{"start":"2017/06/10 04:00:00","stop":"2017/06/10 04:25:00"},
+{"start":"2017/06/10 18:00:00","stop":"2017/06/10 18:40:00"},
+{"start":"2017/06/10 21:30:00","stop":"2017/06/10 23:55:00"},
 
-{"start":"2017-06-11 01:00:00","stop":"2017-06-11 01:15:00"},
-{"start":"2017-06-11 04:00:00","stop":"2017-06-11 04:25:00"},
-{"start":"2017-06-11 10:45:00","stop":"2017-06-11 14:15:00"},
-{"start":"2017-06-11 18:20:00","stop":"2017-06-11 18:45:00"},
-{"start":"2017-06-11 22:30:00","stop":"2017-06-11 22:55:00"},
+{"start":"2017/06/11 01:00:00","stop":"2017/06/11 01:15:00"},
+{"start":"2017/06/11 04:00:00","stop":"2017/06/11 04:25:00"},
+{"start":"2017/06/11 10:45:00","stop":"2017/06/11 14:15:00"},
+{"start":"2017/06/11 18:20:00","stop":"2017/06/11 18:45:00"},
+{"start":"2017/06/11 22:30:00","stop":"2017/06/11 22:55:00"},
 
-{"start":"2017-06-12 01:00:00","stop":"2017-06-12 01:20:00"},
-{"start":"2017-06-12 03:40:00","stop":"2017-06-12 04:25:00"},
-{"start":"2017-06-12 11:45:00","stop":"2017-06-12 14:15:00"},
-{"start":"2017-06-12 21:30:00","stop":"2017-06-12 23:55:00"},
+{"start":"2017/06/12 01:00:00","stop":"2017/06/12 01:20:00"},
+{"start":"2017/06/12 03:40:00","stop":"2017/06/12 04:25:00"},
+{"start":"2017/06/12 11:45:00","stop":"2017/06/12 14:15:00"},
+{"start":"2017/06/12 21:30:00","stop":"2017/06/12 23:55:00"},
 
-{"start":"2017-06-13 01:00:00","stop":"2017-06-13 01:20:00"},
-{"start":"2017-06-13 04:00:00","stop":"2017-06-13 04:25:00"},
-{"start":"2017-06-13 11:45:00","stop":"2017-06-13 14:15:00"},
-{"start":"2017-06-13 18:10:00","stop":"2017-06-13 18:25:00"},
+{"start":"2017/06/13 01:00:00","stop":"2017/06/13 01:20:00"},
+{"start":"2017/06/13 04:00:00","stop":"2017/06/13 04:25:00"},
+{"start":"2017/06/13 11:45:00","stop":"2017/06/13 14:15:00"},
+{"start":"2017/06/13 18:10:00","stop":"2017/06/13 18:25:00"},
 
-{"start":"2017-06-14 04:00:00","stop":"2017-06-14 04:25:00"},
-{"start":"2017-06-14 11:45:00","stop":"2017-06-14 14:55:00"},
-{"start":"2017-06-14 18:00:00","stop":"2017-06-14 18:55:00"},
-{"start":"2017-06-14 21:10:00","stop":"2017-06-14 23:55:00"},
+{"start":"2017/06/14 04:00:00","stop":"2017/06/14 04:25:00"},
+{"start":"2017/06/14 11:45:00","stop":"2017/06/14 14:55:00"},
+{"start":"2017/06/14 18:00:00","stop":"2017/06/14 18:55:00"},
+{"start":"2017/06/14 21:10:00","stop":"2017/06/14 23:55:00"},
 
-{"start":"2017-06-15 01:00:00","stop":"2017-06-15 01:20:00"},
-{"start":"2017-06-15 04:00:00","stop":"2017-06-15 04:25:00"},
-{"start":"2017-06-15 07:00:00","stop":"2017-06-15 10:25:00"},
-{"start":"2017-06-15 11:25:00","stop":"2017-06-15 13:15:00"},
-{"start":"2017-06-15 18:00:00","stop":"2017-06-15 18:45:00"},
-{"start":"2017-06-15 22:30:00","stop":"2017-06-15 23:55:00"},
+{"start":"2017/06/15 01:00:00","stop":"2017/06/15 01:20:00"},
+{"start":"2017/06/15 04:00:00","stop":"2017/06/15 04:25:00"},
+{"start":"2017/06/15 07:00:00","stop":"2017/06/15 10:25:00"},
+{"start":"2017/06/15 11:25:00","stop":"2017/06/15 13:15:00"},
+{"start":"2017/06/15 18:00:00","stop":"2017/06/15 18:45:00"},
+{"start":"2017/06/15 22:30:00","stop":"2017/06/15 23:55:00"},
 
-{"start":"2017-06-16 01:00:00","stop":"2017-06-16 01:35:00"},
-{"start":"2017-06-16 04:00:00","stop":"2017-06-16 04:25:00"},
-{"start":"2017-06-16 12:45:00","stop":"2017-06-16 14:15:00"},
-{"start":"2017-06-16 17:00:00","stop":"2017-06-16 18:45:00"},
-{"start":"2017-06-16 21:30:00","stop":"2017-06-16 23:55:00"},
+{"start":"2017/06/16 01:00:00","stop":"2017/06/16 01:35:00"},
+{"start":"2017/06/16 04:00:00","stop":"2017/06/16 04:25:00"},
+{"start":"2017/06/16 12:45:00","stop":"2017/06/16 14:15:00"},
+{"start":"2017/06/16 17:00:00","stop":"2017/06/16 18:45:00"},
+{"start":"2017/06/16 21:30:00","stop":"2017/06/16 23:55:00"},
 
-{"start":"2017-06-17 01:00:00","stop":"2017-06-17 01:25:00"},
-{"start":"2017-06-17 04:00:00","stop":"2017-06-17 04:25:00"},
-{"start":"2017-06-17 11:45:00","stop":"2017-06-17 14:15:00"},
-{"start":"2017-06-17 18:00:00","stop":"2017-06-17 18:45:00"},
-{"start":"2017-06-17 21:30:00","stop":"2017-06-17 23:55:00"}
+{"start":"2017/06/17 01:00:00","stop":"2017/06/17 01:25:00"},
+{"start":"2017/06/17 04:00:00","stop":"2017/06/17 04:25:00"},
+{"start":"2017/06/17 11:45:00","stop":"2017/06/17 14:15:00"},
+{"start":"2017/06/17 18:00:00","stop":"2017/06/17 18:45:00"},
+{"start":"2017/06/17 21:30:00","stop":"2017/06/17 23:55:00"}
 ];
 
-var mySchedule = [
-{"start":"01:10:00","stop":"01:40:00"},
-{"start":"12:00:00","stop":"14:20:00"},
-{"start":"04:00:00","stop":"04:50:00"},
-{"start":"21:00:00","stop":"23:20:00"}
-];
+var mySchedule = [];
+
+
+
 var first = d3.time.day.floor( new Date(data[0].start)),
 last = d3.time.day.ceil( new Date(data[data.length-1].stop)),
 dRange = [d3.min(data,function(d){
@@ -125,7 +123,8 @@ var tip = d3.tip()
 .attr('class', 'd3-tip')
 .offset([-10, 0])
 .html(function(d) {
-	return "<strong>Start:</strong> <span style='color:#7a7cc7'>" + moment(d.start).format("MM/DD hh:mm") + " </span> <strong>End: </strong><span style='color:#7a7cc7'>" + moment(d.stop).format("MM/DD hh:mm") + "</span>";
+	console.log(d);
+	return "<strong>Start:</strong> <span style='color:#7a7cc7'>" + moment(new Date(d.start)).format("MM/DD hh:mm") + " </span> <strong>End: </strong><span style='color:#7a7cc7'>" + moment(new Date(d.stop)).format("MM/DD hh:mm") + "</span>";
 })
 
 var x = d3.time.scale()		
@@ -138,8 +137,30 @@ var y =d3.time.scale()
 
 var ganttSvg;
 
+function getActiveSchedule() {
+	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
+	  	var schedule_settings = snapshot.val();
+	  	var currentSchedule = schedules[schedule_settings.schedule];
+	  	for(var i = 0; i < currentSchedule.naps.length; i++)
+	  	{
+	  		mySchedule.push(
+	  			{
+	  				"start" : moment.utc().startOf('day').add(currentSchedule.naps[i].start, 'minutes').format('HH:mm:ss'),
+	  				"stop" : moment.utc().startOf('day').add(currentSchedule.naps[i].stop, 'minutes').format('HH:mm:ss')
+
+	  			}
+	  		)
+	  	}
+	  	viewBars(data);
+	addDefaultValues();
+for (var i = 0; i < data.length; i++) {
+		addTask(data[i]);
+	}
+	  })
+}
+
 function viewBars (data) {
-	ganttSvg = d3.select(".wrapper")
+	ganttSvg = d3.select(".gantt")
 	.append("div")
 	.attr("class","d3-container container")
 	.selectAll("svg").data(d3.range(1))
@@ -159,10 +180,8 @@ function viewBars (data) {
 
 	/* add bars to chart */
 
-	addDefaultValues();
-	for (var i = 0; i < data.length; i++) {
-		addTask(data[i]);
-	}
+	
+	
 	
 	/*add axes and grid*/
 
@@ -192,7 +211,9 @@ function viewBars (data) {
 	.call(yAxis.orient("left"));
 };
 
-viewBars(data);
+function app() {
+	getActiveSchedule();
+}
 
 function addTask(task) {
 	hour = d3.time.format("%X"),
@@ -200,10 +221,12 @@ function addTask(task) {
 	.attr("class","chart")
 	.selectAll("rect")
 	.data([task])
+
 	.enter()
 	.append("rect")
+
 	.attr("class",function(d){
-		var c = moment(d.stop).diff(d.start, 'minutes');
+		var c = moment(new Date(d.stop)).diff(new Date(d.start), 'minutes');
 		if(c <= 60)
 			return("bar nap");
 		else
@@ -213,8 +236,9 @@ function addTask(task) {
 	.attr("x",function(d){
 		var h = hour(new Date(d.start)).split(":"), //changes datum from string, to proper Date Object, back to hour string and splits
 		xh = parseFloat(h[0])+parseFloat(h[1]/60); //time (hour and minute) as decimal
-		return x(xh);a
+		return x(xh);
 	})
+
 	.attr("y",function(d) { 
 		return y(d3.time.day.floor(new Date(d.start)))
 	})
@@ -230,6 +254,8 @@ function addTask(task) {
 	.attr("ry",15)
 	.on('mouseover', tip.show)
 	.on('mouseout', tip.hide)
+		.append("svg:title")
+
 	.datum(function(d){return Date.parse(d)});
 
 	d3.selectAll('rect').transition()
@@ -245,7 +271,7 @@ function addDefaultTask(task) {
 	.enter()
 	.append("rect")
 	.attr("class",function(d){
-		var c = moment(d.stop).diff(d.start, 'minutes');
+		var c = moment(new Date(d.stop)).diff(d.start, 'minutes');
 		if(c <= 60)
 			return("bar nap default_bar");
 		else
@@ -276,11 +302,10 @@ function addDefaultTask(task) {
 function addDefaultValues() {
 	var interval;
 
-	for(var p = moment(first).add(1,'days').format("YYYY-MM-DD"); p < moment(last).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
+	for(var p = moment(new Date(first)).add(1,'days').format("YYYY-MM-DD"); p < moment(new Date(last)).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
 	{
 		for(var y = 0; y < mySchedule.length; y++)
 		{	
-
 			interval = {start: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].start, stop: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].stop};
 			addDefaultTask(interval);
 		}
@@ -288,6 +313,10 @@ function addDefaultValues() {
 };
 
 function addTaskFromUI(nap) {
+	nap.day = moment(new Date(nap.start)).format('YYYY-MM-DD');
+	firebase.database().ref('/sleep_record/' + currentUser.uid).push().set(nap);
+
+
 	data.push(nap);
 	addTask(data[data.length-1]);
 };
@@ -310,6 +339,12 @@ function takeNapValuesFromInputs() {
 	var day = document.getElementById('calendar').value;
 	var start_hour = document.getElementById('start-nap').value;
 	var stop_hour = document.getElementById('stop-nap').value;
-	var nap = {start: day + ' ' + start_hour + ':00', stop: day + ' ' + stop_hour + ':00'};
-	addTaskFromUI(nap);
+	if(moment(stop_hour,"HH:mm").diff(moment(start_hour,"HH:mm"), 'minutes') >= 0)
+	{
+		var nap = {start: day + ' ' + start_hour + ':00', stop: day + ' ' + stop_hour + ':00'};
+		addTaskFromUI(nap);
+	}
+	else {
+		console.log('error');
+	}
 };

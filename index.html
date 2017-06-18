@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="less/style-dashboard.css"/>
 	<link rel="stylesheet" type="text/css" href="less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="less/navbar.css"/>
-	<script type="text/javascript" src="js/dashboard-dashboard.js"></script>
 </head>
 
 <body>
@@ -27,5 +26,20 @@
 	<div class="wrapper">
 	</div>
 	
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script>
+  // Initialize Firebase
+  var config = {
+  	apiKey: "AIzaSyDkVEz0t4IP_s4_Dg-0nEHCHgm6gBYEa7w",
+  	authDomain: "uberphasic.firebaseapp.com",
+  	databaseURL: "https://uberphasic.firebaseio.com",
+  	projectId: "uberphasic",
+  	storageBucket: "uberphasic.appspot.com",
+  	messagingSenderId: "731789591192"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript" src="js/dashboard-dashboard.js"></script>
+
 </body>
 </html>
