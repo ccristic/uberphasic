@@ -21,9 +21,23 @@
 			<li><a href="schedules/schedules.html" class="tooltip pointer">C <span class="tooltiptext">Sabloane</span></a></li>
 			<li><a href="theory/all-schedules.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>	
 		</ul>
+		<div class="dropdown noselect">
+			<button class="dropbtn pointer">E</button>
+			<div class="dropdown-content">
+				<div class="dropdown-container">
+					<a href="#">Account Settings</a>
+					<a href="#" onclick="logoutUser()">Logout</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="wrapper">
+		<div id="top-navbar">
+		<ul class="navbar noselect">
+					
+			</ul>
+		</div>
 	</div>
 	
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
@@ -39,7 +53,5 @@
   };
   firebase.initializeApp(config);
 </script>
-<script type="text/javascript" src="js/dashboard-dashboard.js"></script>
-
 </body>
 </html>

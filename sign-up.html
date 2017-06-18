@@ -5,15 +5,21 @@
 	<link rel="stylesheet" type="text/css" href="less/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="less/style.css"/>
 	<link rel="stylesheet" type="text/css" href="less/typography.css"/>
-	<link rel="stylesheet" type="text/css" href="less/sign-up.css"/>
+	<link rel="stylesheet" type="text/css" href="less/login.css"/>
 </head>
 
 <body>
-
-	<div class="wrapper">
-		<input type="text" name="" class="register-input" id="email"/>
-		<input type="password" name="" class="register-input" id="password"/>
-		<button onclick="signUp()">sign up</button>
+	<div class="background-app">
+		<div class="login-box">
+			<img src="images/logo.png" class="logo">
+			<input type="text" name="" class="register-input" id="email" placeholder="E-mail address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail address'" onkeydown = "if (event.keyCode == 13)
+                        document.getElementsByClassName('login-button')[0].click()"/>
+			<input type="password" name="" class="register-input" id="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" onkeydown = "if (event.keyCode == 13)
+                        document.getElementsByClassName('login-button')[0].click()"/>
+            <div id="error-message"></div>
+			<button onclick="signUp()" class="login-button">sign up</button>
+			<span class="sign-up-message">Already a member? <a href="login.html" class="sign-up-link">Go to Login</a></span>
+		</div>
 	</div>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="js/firebase-config.js"></script>
@@ -26,14 +32,18 @@
 
 	  firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
 	  .then(function(result) {
+	  	window.location = 'login.html';
 	  	console.log(result);	//succes
 	  })
 	  .catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
-		  console.log(errorMessage);
-		  // ...
+		  var error_container = document.createElement('span');
+		  error_container.id = "eroare";
+		  var error_message = document.createTextNode(errorMessage);
+		  error_container.appendChild(error_message);
+		  document.getElementById('error-message').appendChild(error_container);
 		});
 	  }
 

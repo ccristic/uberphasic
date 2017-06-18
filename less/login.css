@@ -1,3 +1,138 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  font-family: 'Hind', sans-serif;
+  font-size: 14px;
+}
+h1,
+p,
+table {
+  font-family: 'Hind', sans-serif;
+}
+input {
+  height: 35px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(122, 124, 199, 0.2);
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+button {
+  border-radius: 80px;
+  padding: 8px 30px;
+  background-color: #1dffa7;
+  border: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f304e;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: #7a7cc7;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.pointer {
+  cursor: pointer;
+}
+.default {
+  cursor: default;
+}
 .register-input {
-  color: black;
+  color: white;
+  width: 80%;
+  margin: 0px 10%;
+  height: 45px;
+  outline: none;
+}
+.background-app {
+  background-color: #2f304e;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-box {
+  width: 450px;
+  height: 320px;
+  border-radius: 5px;
+  background-color: #3b3c5b;
+  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.2);
+}
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #7a7cc7;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #7a7cc7;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #7a7cc7;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #7a7cc7;
+}
+.logo {
+  width: 50%;
+  margin: 8% 25% 5% 25%;
+}
+.login-button {
+  background-color: #7a7cc7;
+  color: white;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px 10%;
+  height: 48px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.login-button:hover {
+  background-color: #1dffa7;
+  color: #2f304e;
+}
+.sign-up-link {
+  color: #7a7cc7;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sign-up-link:hover {
+  color: #1dffa7;
+}
+.sign-up-message {
+  width: 80%;
+  margin: 20px 10%;
+  color: #7a7cc7;
+}
+#error-message {
+  width: 80%;
+  margin: 10px 10%;
+  font-weight: 600;
+  color: #ff5176;
 }

@@ -9,8 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-    <script type="text/javascript" src="../json/schedules.json"></script>
-		
+	<script type="text/javascript" src="../json/schedules.json"></script>
+
 </head>
 <body>
 	<div class="sidebar">
@@ -23,10 +23,19 @@
 			<li><a href="../schedules/schedules.html" class="tooltip pointer">C <span class="tooltiptext">Sabloane</span></a></li>
 			<li><a href="../theory/all-schedules.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>
 		</ul>
+		<div class="dropdown noselect">
+			<button class="dropbtn pointer">E</button>
+			<div class="dropdown-content">
+				<div class="dropdown-container">
+					<a href="#">Account Settings</a>
+					<a href="#" onclick="logoutUser()">Logout</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="wrapper">
-		<div>
+		<div id="top-navbar">
 			<ul class="navbar noselect">
 				<li><a class="active-navbar default">Somn</a></li>
 				<li><a href="my-schedule.html">Sablonul meu</a></li>
