@@ -215,3 +215,7 @@ a.active-icon {
   background-color: #2f304e;
   color: #7a7cc7;
 }
+.dropbtn {
+  font-family: Glyphter;
+  font-size: 18px;
+}

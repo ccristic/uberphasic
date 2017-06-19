@@ -24,7 +24,7 @@
 			<li><a href="../theory/all-schedules.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>
 		</ul>
         <div class="dropdown noselect">
-            <button class="dropbtn pointer">E</button>
+            <button class="dropbtn pointer">F</button>
             <div class="dropdown-content">
                 <div class="dropdown-container">
                     <a href="#">Account Settings</a>
@@ -54,7 +54,7 @@
         function getChartDataFromSchedule(schedule) {
             var hours = [], colors = [], labels = [];
             for (var i = 0; i < schedule.naps.length; i++) {
-                hours.push((schedule.naps[i].stop - schedule.naps[i].start)/60);
+                hours.push(((schedule.naps[i].stop - schedule.naps[i].start)/60).toFixed(2));
 
                 if(hours[hours.length-1] <= 1) {
                     labels.push(' Nap');
@@ -66,12 +66,12 @@
                 }
 
                 if (i< schedule.naps.length - 1) {
-                    hours.push((schedule.naps[i+1].start - schedule.naps[i].stop)/60); 
+                    hours.push(((schedule.naps[i+1].start - schedule.naps[i].stop)/60).toFixed(2)); 
                     colors.push('#3b3c5b');
                     labels.push(' Awake');
                 }
                 else { 
-                    hours.push((1440 - schedule.naps[i].stop)/60); 
+                    hours.push(((1440 - schedule.naps[i].stop)/60).toFixed(2)); 
                     colors.push('#3b3c5b'); 
                     labels.push(' Awake');   
                 }
