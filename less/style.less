@@ -29,9 +29,19 @@ input {
   font-size: 14px;
   font-weight: 600;
   color: white;
+  font-family: 'Hind', sans-serif;
 }
 
 button {
+  border: none;
+  outline: none;
+}
+
+button:hover {
+  transition: @bezier;
+}
+
+.button-action {
   border-radius: 80px;
   padding: 8px 30px;
   background-color: @accent;
@@ -44,7 +54,7 @@ button {
   outline: none;
 }
 
-button:hover {
+.button-action:hover {
   background-color: @purple;
   color: white;
   transition: @bezier;

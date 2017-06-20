@@ -37,7 +37,6 @@ path.domain {
 }
 
 .flatpickr-input {
-	margin-right: 20px;
 	position: relative;
 }
 
@@ -95,8 +94,55 @@ button.edit, button.save, button.delete {
 	text-transform: capitalize;
 }
 
+button.save {
+	color: @background-color;
+	background-color: @accent;
+}
+
 button:hover {
 	background-color: @purple;
 	color: white;
 	transition: @bezier;
+}
+
+button.button-table {
+	font-size: 10px;
+	padding: 5px 6px;
+}
+
+
+.table-cell {
+  height: 38px;
+  text-align: center;
+  vertical-align: middle;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: white;
+  width: 169px;
+  font-family: 'Hind', sans-serif;
+  padding: 0px 10px;
+
+}
+
+.table-input {
+  /*height: 38px;*/
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: white;
+  width: 169px;
+  font-family: 'Hind', sans-serif;
+  border-bottom: 1px solid rgba(122,124,199, 0.2);
+}
+
+.v-align {
+	vertical-align: middle;
+}
+
+#data_table th {
+	color: @purple;
+    font-family: 'Hind', sans-serif;
+    font-weight: 600;
 }
