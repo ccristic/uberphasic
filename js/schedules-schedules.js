@@ -45,6 +45,7 @@ function createChart(schedule, canvasId) {
     var ctx = document.getElementById(canvasId);
     var myChart = new Chart(ctx, data);
 }
+
 function  createContainer(canvasId) {
     var scheduleList = document.createElement('div');
     scheduleList.className = "schedule_list";
@@ -63,7 +64,6 @@ function  createContainer(canvasId) {
     canvas.className = "schedule_title";
     canvasContainer = document.createTextNode(schedules[canvasId].title + " sleep pattern");
     canvas.appendChild(canvasContainer);
-
 
     var text_wrapper = document.createElement('div');
     text_wrapper.className = "schedule_text";
@@ -103,4 +103,13 @@ function assignScheduleToUser(event) {
     }).then(function(res) {
         window.location = '../monitoring/my-schedule.html';
     });
+}
+
+function update() {
+    var my_schedule;
+    var schedule_settings = snapshot.val();
+    my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
+    my_schedule.naps[0].start = 200;
+    createChart(my_schedule, schedule_settings.schedule);
+    console.log(my_schedule);
 }

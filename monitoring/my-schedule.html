@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../less/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/typography.css"/>
-	<link rel="stylesheet" type="text/css" href="../less/style-my-schedule.css"/>
+	<link rel="stylesheet" type="text/css" href="../less/monitoring-my-schedule.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
 </head>
@@ -42,6 +42,7 @@
 			</ul>
 		</div>
 		<div id="wrapper">
+			<button type="button" class="button-action" onclick="update()">Add Task</button>
 		</div>
 	</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
@@ -61,8 +62,13 @@
   	console.log(schedule_settings.schedule);
   	createContainer(schedule_settings.schedule);
     createChart(schedules[schedule_settings.schedule], schedule_settings.schedule);
+    update();
   })
+
+	
   // ...
+
+
 };
 	</script>
 </body>
