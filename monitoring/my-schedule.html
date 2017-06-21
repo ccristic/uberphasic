@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../less/monitoring-my-schedule.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -42,19 +43,27 @@
 			</ul>
 		</div>
 		<div id="wrapper">
-			<input type="number" id="modify" step="5" value= 0>
-			<button type="button" class="button-action" onclick="update()">Add Task</button>
+			<input id="start-nap" class="flatpickr-ora" type="text" onchange="startRotateChart()">
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	
 	<script type="text/javascript" src="../json/schedules.json"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="../js/firebase-config.js"></script>
+	<script src="https://unpkg.com/flatpickr"></script>
+
 	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
 	<script type="text/javascript" src="../js/schedules-schedules.js"></script>
 
 	<script>
+	function startRotateChart() {
+		var hour_to_minutes = moment(document.getElementById('start-nap').value, "HH:mm");
+		hour_to_minutes = hour_to_minutes.hours() * 60 + hour_to_minutes.minutes();
+		update(hour_to_minutes);
+	}
+
 		verifyIfConnected(app);
  				var my_schedule;
  				var myChart;
@@ -90,8 +99,10 @@
 				return new_chart;
     		}
 			
-			function update() {
-				myChart.data = Object.assign({}, changeScheduleFromUI().data);
+			function update(minutes) {
+				var angle = (-0.5 * Math.PI) + ((minutes/60) * 15)/180 * Math.PI;
+
+				myChart.options.rotation = angle;
 				myChart.update();
 			}
 </script>

@@ -26,12 +26,15 @@ function getChartDataFromSchedule(schedule) {
     }
     return {
         type: 'pie',
+  
         options: {
+            rotation: (-0.5 * Math.PI) - (360/180 * Math.PI),
             legend: {
                 display: false
             }
         },
         data: {
+
             datasets: [{
                 data: hours,
                 backgroundColor: colors,                        
@@ -117,3 +120,13 @@ function update() {
     console.log(my_schedule);
 
 }
+
+flatpickr('.flatpickr-ora', {
+        enableTime: true,
+        noCalendar: true,
+        time_24hr: true,
+        dateFormat: "H:i",
+        defaultDate: "0:00", 
+        defaultHour: 0,
+        defaultMinute: 0
+    });
