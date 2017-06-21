@@ -28,7 +28,7 @@ function edit_row(no) {
 		defaultMinute: 0
 	});
 
-	flatpickr('#stop_text', {
+	flatpickr('#stop_text' + no, {
 		enableTime: true,
 		noCalendar: true,
 		time_24hr: true,

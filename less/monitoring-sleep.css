@@ -28,6 +28,7 @@ input {
   color: white;
   font-family: 'Hind', sans-serif;
   margin-right: 20px;
+  outline: none;
 }
 button {
   border: none;
