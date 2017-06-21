@@ -27,6 +27,7 @@ input {
   font-weight: 600;
   color: white;
   font-family: 'Hind', sans-serif;
+  margin-right: 20px;
 }
 button {
   border: none;
@@ -101,9 +102,6 @@ path.domain {
 .add_sleep {
   display: flex;
   margin-top: 30px;
-}
-.flatpickr-input {
-  position: relative;
 }
 .flatpickr-time,
 .flatpickr-calendar {
@@ -186,6 +184,7 @@ button.button-table {
   text-align: center;
   background: transparent;
   border: none;
+  margin-right: 0px;
   font-size: 14px;
   color: white;
   width: 169px;

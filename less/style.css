@@ -27,6 +27,7 @@ input {
   font-weight: 600;
   color: white;
   font-family: 'Hind', sans-serif;
+  margin-right: 20px;
 }
 button {
   border: none;

@@ -42,34 +42,58 @@
 			</ul>
 		</div>
 		<div id="wrapper">
+			<input type="number" id="modify" step="5" value= 0>
 			<button type="button" class="button-action" onclick="update()">Add Task</button>
 		</div>
 	</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 	
-    <script type="text/javascript" src="../json/schedules.json"></script>
+	<script type="text/javascript" src="../json/schedules.json"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="../js/firebase-config.js"></script>
-    <script type="text/javascript" src="../js/verify-connected-user.js"></script>
-    <script type="text/javascript" src="../js/schedules-schedules.js"></script>
+	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
+	<script type="text/javascript" src="../js/schedules-schedules.js"></script>
 
 	<script>
-	verifyIfConnected(app);
+		verifyIfConnected(app);
+ 				var my_schedule;
+ 				var myChart;
+		function app() {
+				firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
+				var schedule_settings = snapshot.val();
+				console.log(schedule_settings.schedule);
+				createContainer(schedule_settings.schedule);
 
-	function app() {
-	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
-  	var schedule_settings = snapshot.val();
-  	console.log(schedule_settings.schedule);
-  	createContainer(schedule_settings.schedule);
-    createChart(schedules[schedule_settings.schedule], schedule_settings.schedule);
-    update();
-  })
+    			my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
 
-	
-  // ...
+    			
 
+				myChart = createChart(my_schedule, schedule_settings.schedule);
 
-};
-	</script>
+				})
+ 			 // ...
+			};
+			
+			function changeScheduleFromUI() {
+    			console.log(my_schedule);
+    			var add_value = parseInt(document.getElementById('modify').value);
+    			for (var i = 0; i < my_schedule.naps.length; i++) {
+    				my_schedule.naps[i].start = parseInt(my_schedule.naps[i].start) + add_value;
+    				if(my_schedule.naps[i].start > 1440)
+    					my_schedule.naps[i].start -= 1440;
+    				my_schedule.naps[i].stop = parseInt(my_schedule.naps[i].stop) + add_value;
+    				if(my_schedule.naps[i].stop > 1440)
+    					my_schedule.naps[i].start -= 1440;
+    			}
+    			console.log(my_schedule.title);
+				var new_chart = getChartDataFromSchedule(my_schedule);
+				return new_chart;
+    		}
+			
+			function update() {
+				myChart.data = Object.assign({}, changeScheduleFromUI().data);
+				myChart.update();
+			}
+</script>
 </body>
 </html>

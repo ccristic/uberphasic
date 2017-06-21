@@ -42,13 +42,17 @@
     'Blue'
     ]
   };
-
-  myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data
-  });
-  myPieChart.update();
-  console.log(myPieChart.data);
+  window.setTimeout(function() {
+    myPieChart.data.datasets[0] = data.datasets[0]; 
+    myPieChart.update();
+  }, 5000)
+ 
+  // myPieChart = new Chart(ctx,{
+  //   type: 'pie',
+  //   data: data
+  // });
+  // myPieChart.update();
+  // console.log(myPieChart.data);
 
 </script>
 </body>

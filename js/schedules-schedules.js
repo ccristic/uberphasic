@@ -1,5 +1,6 @@
 function getChartDataFromSchedule(schedule) {
     var hours = [], colors = [], labels = [];
+
     for (var i = 0; i < schedule.naps.length; i++) {
         hours.push(((schedule.naps[i].stop - schedule.naps[i].start)/60).toFixed(2));
 
@@ -44,6 +45,8 @@ function createChart(schedule, canvasId) {
     var data = getChartDataFromSchedule(schedule);
     var ctx = document.getElementById(canvasId);
     var myChart = new Chart(ctx, data);
+
+    return myChart;
 }
 
 function  createContainer(canvasId) {
@@ -112,4 +115,5 @@ function update() {
     my_schedule.naps[0].start = 200;
     createChart(my_schedule, schedule_settings.schedule);
     console.log(my_schedule);
+
 }
