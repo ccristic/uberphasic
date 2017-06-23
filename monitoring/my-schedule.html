@@ -44,6 +44,10 @@
 		</div>
 		<div id="wrapper">
 			<input id="start-nap" class="flatpickr-ora" type="text" onchange="startRotateChart()">
+			<div>
+				
+			</div>
+
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
@@ -59,53 +63,71 @@
 	<script type="text/javascript" src="../js/my-schedule.js"></script>
 
 	<script>
-	function startRotateChart() {
-		var hour_to_minutes = moment(document.getElementById('start-nap').value, "HH:mm");
-		hour_to_minutes = hour_to_minutes.hours() * 60 + hour_to_minutes.minutes();
-		update(hour_to_minutes);
-	}
+		var hour_to_minutes = 0;
+		function startRotateChart() {
+			hour_to_minutes = moment(document.getElementById('start-nap').value, "HH:mm");
+			hour_to_minutes = hour_to_minutes.hours() * 60 + hour_to_minutes.minutes();
+			update(hour_to_minutes);
+		}
 
 		verifyIfConnected(app);
- 				var my_schedule;
- 				var myChart;
+		var my_schedule;
+		var myChart;
 		function app() {
-				firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
+			firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 				var schedule_settings = snapshot.val();
 				console.log(schedule_settings.schedule);
 				createContainer(schedule_settings.schedule);
 
-    			my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
+				my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
 
-    			
+
 
 				myChart = createChart(my_schedule, schedule_settings.schedule);
 
-				})
+				createAlarms();
+			})
  			 // ...
-			};
-			
-			function changeScheduleFromUI() {
-    			console.log(my_schedule);
-    			var add_value = parseInt(document.getElementById('modify').value);
-    			for (var i = 0; i < my_schedule.naps.length; i++) {
-    				my_schedule.naps[i].start = parseInt(my_schedule.naps[i].start) + add_value;
-    				if(my_schedule.naps[i].start > 1440)
-    					my_schedule.naps[i].start -= 1440;
-    				my_schedule.naps[i].stop = parseInt(my_schedule.naps[i].stop) + add_value;
-    				if(my_schedule.naps[i].stop > 1440)
-    					my_schedule.naps[i].start -= 1440;
-    			}
-    			console.log(my_schedule.title);
-				var new_chart = getChartDataFromSchedule(my_schedule);
-				return new_chart;
-    		}
-			
-			function update(minutes) {
-				var angle = (-0.5 * Math.PI) + ((minutes/60) * 15)/180 * Math.PI;
+ 			};
 
-				myChart.options.rotation = angle;
-				myChart.update();
-			}
-</script>
-</body>
-</html>
+ 			function update(minutes) {
+ 				var angle = (-0.5 * Math.PI) + ((minutes/60) * 15)/180 * Math.PI;
+ 				updateAlarms();
+ 				myChart.options.rotation = angle;
+ 				myChart.update();
+ 			}
+
+ 			function createAlarms() {
+ 				for (var i=0; i<my_schedule.naps.length; i ++) {
+ 					var new_input = document.createElement('input');
+ 					var offtime = 10; //notify me 10 minutes before bed time
+					var sleep_alarm =	moment().startOf('day').add(my_schedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
+ 					new_input.value = sleep_alarm;
+ 					new_input.id = "sleep_alarm" + i;
+ 					new_input.setAttribute("readonly", true);
+ 					document.getElementById('wrapper').appendChild(new_input);
+
+ 					new_input = document.createElement('input');
+					var wake_alarm =	moment().startOf('day').add(my_schedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
+ 					new_input.value = wake_alarm;
+ 					new_input.id = "wake_alarm" + i;
+ 					new_input.setAttribute("readonly", true);
+ 					document.getElementById('wrapper').appendChild(new_input);
+ 				}
+ 			}
+
+ 			function updateAlarms() {
+ 				for (var i=0; i<my_schedule.naps.length; i ++) {
+
+ 					var offtime = 10; //notify me 10 minutes before bed time
+					var sleep_alarm =	moment().startOf('day').add(my_schedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
+ 					document.getElementById('sleep_alarm' + i).value = sleep_alarm;
+					
+					var wake_alarm =	moment().startOf('day').add(my_schedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
+ 					document.getElementById('wake_alarm' + i).value = wake_alarm;
+ 				}
+ 			}
+
+ 		</script>
+ 	</body>
+ 	</html>
