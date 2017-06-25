@@ -45,14 +45,14 @@
 		<div id="wrapper">
 			<input id="start-nap" class="flatpickr-ora" type="text" onchange="startRotateChart()">
 			<div>
-				
+				<button type="button" id="save-button" class="button-action" onclick="saveUpdatedSchedule()" disabled>Save</button>
 			</div>
 
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.13/push.min.js"></script>
 	<script type="text/javascript" src="../json/schedules.json"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="../js/firebase-config.js"></script>
@@ -68,20 +68,26 @@
 			hour_to_minutes = moment(document.getElementById('start-nap').value, "HH:mm");
 			hour_to_minutes = hour_to_minutes.hours() * 60 + hour_to_minutes.minutes();
 			update(hour_to_minutes);
+			document.getElementById('save-button').disabled = false;
+				Push.create('Hello World!', {
+    body: 'This is some body content!',
+    
+    timeout: 5000
+});
 		}
 
 		verifyIfConnected(app);
 		var my_schedule;
+		var my_schedule2;
 		var myChart;
 		function app() {
 			firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 				var schedule_settings = snapshot.val();
-				console.log(schedule_settings.schedule);
 				createContainer(schedule_settings.schedule);
-
-				my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
-
-
+				my_schedule = schedules[schedule_settings.schedule];
+				my_schedule2 = schedules[schedule_settings.schedule];
+				console.log(my_schedule);
+				console.log(my_schedule2);
 
 				myChart = createChart(my_schedule, schedule_settings.schedule);
 
@@ -127,6 +133,38 @@
  					document.getElementById('wake_alarm' + i).value = wake_alarm;
  				}
  			}
+
+
+ 			function saveUpdatedSchedule() {
+ 				my_schedule = Object.assign({}, my_schedule2);
+ 				var end_for = my_schedule.naps.length;
+ 				for(var i = 0; i < end_for; i++) {
+					console.log(hour_to_minutes);
+
+					my_schedule.naps[i].start += hour_to_minutes;
+
+					if(my_schedule.naps[i].start > 1440) //keeping at 24h clock
+						my_schedule.naps[i].start -= 1440;
+
+					my_schedule.naps[i].stop += hour_to_minutes;
+					
+
+					if(my_schedule.naps[i].stop > 1440) //keeping at 24h clock
+						my_schedule.naps[i].stop -= 1440;
+
+					if(my_schedule.naps[i].stop < my_schedule.naps[i].start) {
+						var obj = {start: 0, stop: my_schedule.naps[i].stop};
+						my_schedule.naps[i].stop = 0;
+						my_schedule.naps.push(obj);
+					}
+ 				}
+
+ 				console.log(my_schedule);
+
+				firebase.database().ref('/schedule_settings/' + currentUser.uid + '/my_schedule').set(my_schedule);
+			document.getElementById('save-button').disabled = true;
+
+}
 
  		</script>
  	</body>

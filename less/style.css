@@ -54,6 +54,17 @@ button:hover {
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+button:disabled,
+button[disabled] {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+}
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+  cursor: default;
+}
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */

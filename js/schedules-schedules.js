@@ -104,20 +104,11 @@ function app(user) {
 
 function assignScheduleToUser(event) {
     console.log(event.target.getAttribute('schedule'));
+    var my_schedule = schedules[event.target.getAttribute('schedule')];
     firebase.database().ref('schedule_settings/' + currentUser.uid).set({
-        schedule: event.target.getAttribute('schedule')
+        schedule: event.target.getAttribute('schedule'),
+        my_schedule: Object.assign({}, my_schedule)
     }).then(function(res) {
         window.location = '../monitoring/my-schedule.html';
     });
 }
-
-function update() {
-    var my_schedule;
-    var schedule_settings = snapshot.val();
-    my_schedule = Object.assign({}, schedules[schedule_settings.schedule]);
-    my_schedule.naps[0].start = 200;
-    createChart(my_schedule, schedule_settings.schedule);
-    console.log(my_schedule);
-
-}
-

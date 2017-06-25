@@ -40,7 +40,8 @@ var ganttSvg;
 function getActiveSchedule() {
 	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 		var schedule_settings = snapshot.val();
-		var currentSchedule = schedules[schedule_settings.schedule];
+		console.log(schedule_settings);
+		var currentSchedule = schedule_settings.my_schedule;
 		for(var i = 0; i < currentSchedule.naps.length; i++)
 		{
 			mySchedule.push(
@@ -246,7 +247,7 @@ function generateSleepRecords() {
 		.attr("x",function(d){
 		var h = hour(new Date(d.start)).split(":"), //changes datum from string, to proper Date Object, back to hour string and splits
 		xh = parseFloat(h[0])+parseFloat(h[1]/60); //time (hour and minute) as decimal
-		return x(xh);a
+		return x(xh);
 	})
 		.attr("y",function(d) { 
 			return y(d3.time.day.floor(new Date(d.start)))
