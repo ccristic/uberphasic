@@ -47,6 +47,14 @@
 			<div>
 				<button type="button" id="save-button" class="button-action" onclick="saveUpdatedSchedule()" disabled>Save</button>
 			</div>
+			<div id="statistics">
+				<input id="total_duration" type="text" disabled>
+				<input id="active_duration" type="text" disabled>
+				<input id="cores" type="text" disabled>
+				<input id="naps" type="text" disabled>
+				<input id="core_duration" type="text" disabled>
+				<input id="nap_duration" type="text" disabled>
+			</div>
 
 		</div>
 	</div>
@@ -69,27 +77,33 @@
 			hour_to_minutes = hour_to_minutes.hours() * 60 + hour_to_minutes.minutes();
 			update(hour_to_minutes);
 			document.getElementById('save-button').disabled = false;
-				Push.create('Hello World!', {
-    body: 'This is some body content!',
-    
-    timeout: 5000
-});
+			
+
+			/*Push.create('Hello World!', {
+				body: 'This is some body content!',
+				timeout: 5000
+			});*/
+
+
 		}
 
+
 		verifyIfConnected(app);
-		var my_schedule;
-		var my_schedule2;
+		var mySchedule;
+		var mySchedule2;
 		var myChart;
 		function app() {
 			firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 				var schedule_settings = snapshot.val();
 				createContainer(schedule_settings.schedule);
-				my_schedule = schedules[schedule_settings.schedule];
-				my_schedule2 = schedules[schedule_settings.schedule];
-				console.log(my_schedule);
-				console.log(my_schedule2);
 
-				myChart = createChart(my_schedule, schedule_settings.schedule);
+				mySchedule = schedules[schedule_settings.schedule];
+				mySchedule2 = schedules[schedule_settings.schedule];
+				console.log(mySchedule);
+				console.log(mySchedule2);
+
+				myChart = createChart(mySchedule, schedule_settings.schedule);
+				generateScheduleStatistics();
 
 				createAlarms();
 			})
@@ -104,17 +118,17 @@
  			}
 
  			function createAlarms() {
- 				for (var i=0; i<my_schedule.naps.length; i ++) {
+ 				for (var i=0; i<mySchedule.naps.length; i ++) {
  					var new_input = document.createElement('input');
  					var offtime = 10; //notify me 10 minutes before bed time
-					var sleep_alarm =	moment().startOf('day').add(my_schedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
+ 					var sleep_alarm =	moment().startOf('day').add(mySchedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
  					new_input.value = sleep_alarm;
  					new_input.id = "sleep_alarm" + i;
  					new_input.setAttribute("readonly", true);
  					document.getElementById('wrapper').appendChild(new_input);
 
  					new_input = document.createElement('input');
-					var wake_alarm =	moment().startOf('day').add(my_schedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
+ 					var wake_alarm =	moment().startOf('day').add(mySchedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
  					new_input.value = wake_alarm;
  					new_input.id = "wake_alarm" + i;
  					new_input.setAttribute("readonly", true);
@@ -123,49 +137,75 @@
  			}
 
  			function updateAlarms() {
- 				for (var i=0; i<my_schedule.naps.length; i ++) {
+ 				for (var i=0; i<mySchedule2.naps.length; i ++) {
 
  					var offtime = 10; //notify me 10 minutes before bed time
-					var sleep_alarm =	moment().startOf('day').add(my_schedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
+ 					var sleep_alarm =	moment().startOf('day').add(mySchedule2.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
  					document.getElementById('sleep_alarm' + i).value = sleep_alarm;
-					
-					var wake_alarm =	moment().startOf('day').add(my_schedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
+
+ 					var wake_alarm =	moment().startOf('day').add(mySchedule2.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
  					document.getElementById('wake_alarm' + i).value = wake_alarm;
  				}
  			}
 
 
  			function saveUpdatedSchedule() {
- 				my_schedule = Object.assign({}, my_schedule2);
- 				var end_for = my_schedule.naps.length;
+
+ 				mySchedule = JSON.parse(JSON.stringify(Object.assign({}, mySchedule2)));
+ 				var end_for = mySchedule.naps.length;
  				for(var i = 0; i < end_for; i++) {
-					console.log(hour_to_minutes);
+ 					console.log(hour_to_minutes);
 
-					my_schedule.naps[i].start += hour_to_minutes;
+ 					mySchedule.naps[i].start += hour_to_minutes;
 
-					if(my_schedule.naps[i].start > 1440) //keeping at 24h clock
-						my_schedule.naps[i].start -= 1440;
+					if(mySchedule.naps[i].start > 1440) //keeping at 24h clock
+						mySchedule.naps[i].start -= 1440;
 
-					my_schedule.naps[i].stop += hour_to_minutes;
+					mySchedule.naps[i].stop += hour_to_minutes;
 					
 
-					if(my_schedule.naps[i].stop > 1440) //keeping at 24h clock
-						my_schedule.naps[i].stop -= 1440;
+					if(mySchedule.naps[i].stop > 1440) //keeping at 24h clock
+						mySchedule.naps[i].stop -= 1440;
 
-					if(my_schedule.naps[i].stop < my_schedule.naps[i].start) {
-						var obj = {start: 0, stop: my_schedule.naps[i].stop};
-						my_schedule.naps[i].stop = 0;
-						my_schedule.naps.push(obj);
+					if(mySchedule.naps[i].stop < mySchedule.naps[i].start) {
+						var obj = {start: 0, stop: mySchedule.naps[i].stop};
+						mySchedule.naps[i].stop = 1439; 
+						mySchedule.naps.push(obj);
 					}
- 				}
+				}
 
- 				console.log(my_schedule);
+				firebase.database().ref('/schedule_settings/' + currentUser.uid + '/my_schedule').set(mySchedule);
+				document.getElementById('save-button').disabled = true;
+				generateScheduleStatistics();
+			}
 
-				firebase.database().ref('/schedule_settings/' + currentUser.uid + '/my_schedule').set(my_schedule);
-			document.getElementById('save-button').disabled = true;
+			function generateScheduleStatistics() {
+				var sleep_duration = 0, nap_duration = 0, core_duration = 0, total_duration = 0;
+				var naps = 0, cores = 0;
+				var active_duration = 0;
 
-}
+				for(var i = 0; i < mySchedule2.naps.length; i++) {
+					sleep_duration = mySchedule2.naps[i].stop - mySchedule2.naps[i].start;
+					if(sleep_duration <= 60)
+						nap_duration += sleep_duration, naps++;
+					else
+						core_duration += sleep_duration, cores++;
+				}
+				total_duration = nap_duration + core_duration;
+				active_duration = 1440 - total_duration;
 
- 		</script>
- 	</body>
- 	</html>
+				nap_duration =	moment().startOf('day').add(nap_duration, 'minutes').format('HH:mm');
+				core_duration =	moment().startOf('day').add(core_duration, 'minutes').format('HH:mm');
+				total_duration =	moment().startOf('day').add(total_duration, 'minutes').format('HH:mm');
+				active_duration =	moment().startOf('day').add(active_duration, 'minutes').format('HH:mm');
+				document.getElementById('total_duration').value = total_duration;
+				document.getElementById('active_duration').value = active_duration;
+				document.getElementById('cores').value = cores;
+				document.getElementById('naps').value = naps;
+				document.getElementById('core_duration').value = core_duration;
+				document.getElementById('nap_duration').value = nap_duration;
+			}
+
+		</script>
+	</body>
+	</html>

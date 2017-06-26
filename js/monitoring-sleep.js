@@ -281,8 +281,6 @@ function generateSleepRecords() {
 	function addTaskFromUI(nap) {
 		nap.day = moment(new Date(nap.start)).format('YYYY-MM-DD');
 		firebase.database().ref('/sleep_record/' + currentUser.uid).push().set(nap);
-		data.push(nap);
-		addTask(data[data.length-1]);
 	};
 
 	flatpickr('.flatpickr-data', {
