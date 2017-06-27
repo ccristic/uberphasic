@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 	<script type="text/javascript" src="../json/schedules.json"></script>
+	
 
 </head>
 <body>
@@ -56,8 +57,10 @@
 			<button type="button" class="button-action" onclick="refreshSleepRecords()">Set interval</button>
 		</div>
 		
-		<div class="gantt"></div>
-		<div id="sleepScore"></div>
+		<div class="gantt-container">
+			<div class="gantt"></div>
+			<div id="sleepScore"></div>
+		</div>
 
 		<table align='center' id="data_table">
 			<thead>
@@ -69,7 +72,7 @@
 			</thead>
 			<tbody>
 				<tr id="row1">
-				
+					
 				</tr>
 			</tbody>
 			

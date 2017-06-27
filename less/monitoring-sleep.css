@@ -54,6 +54,17 @@ button:hover {
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+button:disabled,
+button[disabled] {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+}
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+  cursor: default;
+}
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -198,5 +209,18 @@ button.button-table {
 #data_table th {
   color: #7a7cc7;
   font-family: 'Hind', sans-serif;
+  font-weight: 600;
+}
+.gantt-container {
+  display: flex;
+}
+#sleepScore {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  margin-top: 38px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #1dffa7;
   font-weight: 600;
 }

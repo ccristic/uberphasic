@@ -16,9 +16,15 @@ var tip = d3.tip()
 
 
 var sleep_record;
+var schedule_settings;
+
+
 
 function getSleepRecords() {
-
+    firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
+        schedule_settings = snapshot.val();
+        console.log(schedule_settings);
+    });
     firebase.database().ref('/sleep_record/' + currentUser.uid).on('value', function(snapshot) {
         sleep_record = snapshot.val();
         sleep_record = _.map(sleep_record, function(value, key) {
@@ -28,29 +34,79 @@ function getSleepRecords() {
 
         sleep_record = _.sortBy(sleep_record, 'start');
         sleep_record = _.groupBy(sleep_record, 'day');
-        calculateScore();
+        
+
     });
+
+    generateCalendar();
+    calculateCalendarScore();
 }
 
 var score = {};
 
-function calculateScore() {
+function calculateCalendarScore() {
     for (var i in sleep_record) {
+        var total_sleep = 0;
+        
+        var slept = 0;
+
         for (var j = 0; j < sleep_record[i].length; j++) {
-            score[i] = 86;
-            data.push({
-                date: moment(new Date(i)).format('DD/MM/YY'),
-                value: score[i] = 86 
-            })
+            var start_nap = moment(sleep_record[i][j].start).format("HH:mm:ss");
+            start_nap = moment(start_nap, "HH:mm:ss");
+            start_nap = start_nap.hours() * 60 + start_nap.minutes();
+            
+            var stop_nap = moment(sleep_record[i][j].stop).format("HH:mm:ss");
+            stop_nap = moment(stop_nap, "HH:mm:ss");
+            stop_nap = stop_nap.hours() * 60 + stop_nap.minutes();
+            
+            total_sleep += stop_nap - start_nap;
+            var to_sleep = 0;
+
+            for(var k = 0; k < schedule_settings.my_schedule.naps.length; k++) {
+                var start_to_sleep = schedule_settings.my_schedule.naps[k].start;
+                var stop_to_sleep = schedule_settings.my_schedule.naps[k].stop;
+
+                to_sleep += stop_to_sleep - start_to_sleep;
+                
+                if(start_nap <= start_to_sleep && stop_nap > start_to_sleep) {
+                    if(stop_nap >= stop_to_sleep)
+                        slept += stop_to_sleep - start_to_sleep;
+                    if(stop_nap < stop_to_sleep)
+                        slept += stop_nap - start_to_sleep;
+                }
+
+                if(start_nap > start_to_sleep && start_nap < stop_to_sleep) {
+                    if(stop_nap >= stop_to_sleep)
+                        slept += stop_to_sleep - start_nap;
+                    if(stop_nap < stop_to_sleep)
+                        slept += stop_nap - start_nap;
+                }
+            }
         }
+        var oversleep = total_sleep - slept;
+        var debt = to_sleep - slept;
+        console.log(to_sleep, slept, debt, oversleep, total_sleep);
+        score[i] = slept - oversleep * 0.5;
+        score[i] = (score[i] * 100) / to_sleep;
+        score[i] = score[i].toFixed(0);
+        if(score[i] < 0)
+            score[i] = 0;
+        if(score[i] >= 90)
+            score[i] = 100;
+        
+        data.push({
+            date: moment(new Date(i)).format('DD/MM/YY'),
+            value: score[i]
+        });
     }
-    generateCalendar();
+    
 }
 
 verifyIfConnected(getSleepRecords);
+
 var cellSize = 17;
-    var xOffset=20;
-    var yOffset=60;
+var xOffset=20;
+var yOffset=60;
     var calY=50;//offset of calendar in each group
     var calX=25;
     var width = 960;
@@ -59,7 +115,7 @@ var cellSize = 17;
     format = d3.time.format("%d-%m-%Y");
     toolDate = d3.time.format("%d/%b/%y");
     var data = [];
-function generateCalendar() {
+    function generateCalendar() {
     //general layout information
     
     
@@ -253,10 +309,10 @@ function generateCalendar() {
                 return "100";   
             }
         });
-}
-    
+     }
+     
 
-         
+     
     //pure Bostock - compute and return monthly path data for any year
     function monthPath(t0) {
       var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),

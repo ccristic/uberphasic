@@ -54,6 +54,17 @@ button:hover {
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+button:disabled,
+button[disabled] {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+}
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #3b3c5b;
+  color: #7a7cc7;
+  cursor: default;
+}
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -111,7 +122,14 @@ button:hover {
 .menu-icons a {
   color: #7a7cc7;
   border-radius: 50%;
-  padding: 10px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  padding-top: 2px;
+  box-sizing: border-box;
   text-decoration: none;
   background-color: #3b3c5b;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -120,7 +138,6 @@ a.active-icon {
   color: #1dffa7;
   background-color: #2f304e;
   border-radius: 50%;
-  padding: 10px;
 }
 .tooltip {
   position: relative;

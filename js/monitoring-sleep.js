@@ -38,11 +38,12 @@ var y =d3.time.scale()
 var ganttSvg;
 
 var minute = 60;
+var schedule_settings;
 
 function getActiveSchedule() {
 	setTimeout(verifyNextAlarm, 1000 * minute);
 	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
-		var schedule_settings = snapshot.val();
+		schedule_settings = snapshot.val();
 		console.log(schedule_settings);
 		var currentSchedule = schedule_settings.my_schedule;
 		for(var i = 0; i < currentSchedule.naps.length; i++)
@@ -71,7 +72,6 @@ function verifyNextAlarm() {
 			console.log('sleep alarm');
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
-				timeout: 2000,
 				onClick: function () {
 					window.focus();
 					this.close();
@@ -182,19 +182,72 @@ var score = {};
 
 function calculateScore() {
 	for (var i in sleep_record) {
+		var total_sleep = 0;
+		
+		var slept = 0;
+
 		for (var j = 0; j < sleep_record[i].length; j++) {
-			score[i] = 86;
+			var start_nap = moment(sleep_record[i][j].start).format("HH:mm:ss");
+			start_nap = moment(start_nap, "HH:mm:ss");
+			start_nap = start_nap.hours() * 60 + start_nap.minutes();
+			
+			var stop_nap = moment(sleep_record[i][j].stop).format("HH:mm:ss");
+			stop_nap = moment(stop_nap, "HH:mm:ss");
+			stop_nap = stop_nap.hours() * 60 + stop_nap.minutes();
+			
+			total_sleep += stop_nap - start_nap;
+			var to_sleep = 0;
+
+			for(var k = 0; k < schedule_settings.my_schedule.naps.length; k++) {
+				var start_to_sleep = schedule_settings.my_schedule.naps[k].start;
+				var stop_to_sleep = schedule_settings.my_schedule.naps[k].stop;
+
+				to_sleep += stop_to_sleep - start_to_sleep;
+				
+				if(start_nap <= start_to_sleep && stop_nap > start_to_sleep) {
+					if(stop_nap >= stop_to_sleep)
+						slept += stop_to_sleep - start_to_sleep;
+					if(stop_nap < stop_to_sleep)
+						slept += stop_nap - start_to_sleep;
+				}
+
+				if(start_nap > start_to_sleep && start_nap < stop_to_sleep) {
+					if(stop_nap >= stop_to_sleep)
+						slept += stop_to_sleep - start_nap;
+					if(stop_nap < stop_to_sleep)
+						slept += stop_nap - start_nap;
+				}
+			}
 		}
+		var oversleep = total_sleep - slept;
+		var debt = to_sleep - slept;
+		console.log(to_sleep, slept, debt, oversleep, total_sleep);
+		score[i] = slept - oversleep * 0.5;
+		score[i] = (score[i] * 100) / to_sleep;
+		score[i] = score[i].toFixed(0);
+		if(score[i] < 0)
+			score[i] = 0;
+		if(score[i] >= 90)
+			score[i] = 100;
+		score[i] += '%';
 	}
 	drawScoreBlocks();
-	console.log(score);
 }
 
 function drawScoreBlocks() {
 	document.getElementById('sleepScore').innerHTML = '';
-	for(var p = moment(first_day).format('YYYY-MM-DD'); p < moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
+	for(var p = moment(first_day).format('YYYY-MM-DD'); p <= moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
 		var span = document.createElement('span');
-		var text_span = document.createTextNode(score[p] ? score[p] : '0');
+
+		
+		if(score[p] != null) {
+			var text_span = document.createTextNode(score[p]);
+		}
+		else {
+			var text_span = document.createTextNode('0%');
+			span.style = "opacity: 0.2";
+
+		}
 		span.appendChild(text_span);
 
 		document.getElementById('sleepScore').appendChild(span);
@@ -245,6 +298,7 @@ function generateSleepRecords() {
 	}
 
 	function addTask(task) {
+
 		hour = d3.time.format("%X"),
 		ganttSvg.append("g")
 		.attr("class","chart")
@@ -331,7 +385,7 @@ function generateSleepRecords() {
 	function addDefaultValues() {
 		var interval;
 
-		for(var p = moment(new Date(first_day)).add(1,'days').format("YYYY-MM-DD"); p <= moment(new Date(last_day)).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
+		for(var p = moment(new Date(first_day)).format("YYYY-MM-DD"); p <= moment(new Date(last_day)).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
 		{
 			for(var y = 0; y < mySchedule.length; y++)
 			{	
