@@ -13,8 +13,42 @@ var tip = d3.tip()
 
 })
 
-    //general layout information
-    var cellSize = 17;
+
+
+var sleep_record;
+
+function getSleepRecords() {
+
+    firebase.database().ref('/sleep_record/' + currentUser.uid).on('value', function(snapshot) {
+        sleep_record = snapshot.val();
+        sleep_record = _.map(sleep_record, function(value, key) {
+            value.id = key; 
+            return value;
+        });
+
+        sleep_record = _.sortBy(sleep_record, 'start');
+        sleep_record = _.groupBy(sleep_record, 'day');
+        calculateScore();
+    });
+}
+
+var score = {};
+
+function calculateScore() {
+    for (var i in sleep_record) {
+        for (var j = 0; j < sleep_record[i].length; j++) {
+            score[i] = 86;
+            data.push({
+                date: moment(new Date(i)).format('DD/MM/YY'),
+                value: score[i] = 86 
+            })
+        }
+    }
+    generateCalendar();
+}
+
+verifyIfConnected(getSleepRecords);
+var cellSize = 17;
     var xOffset=20;
     var yOffset=60;
     var calY=50;//offset of calendar in each group
@@ -24,6 +58,10 @@ var tip = d3.tip()
     var parseDate = d3.time.format("%d/%m/%y").parse;
     format = d3.time.format("%d-%m-%Y");
     toolDate = d3.time.format("%d/%b/%y");
+    var data = [];
+function generateCalendar() {
+    //general layout information
+    
     
     
     
@@ -215,6 +253,8 @@ var tip = d3.tip()
                 return "100";   
             }
         });
+}
+    
 
          
     //pure Bostock - compute and return monthly path data for any year

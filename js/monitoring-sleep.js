@@ -37,7 +37,10 @@ var y =d3.time.scale()
 
 var ganttSvg;
 
+var minute = 60;
+
 function getActiveSchedule() {
+	setTimeout(verifyNextAlarm, 1000 * minute);
 	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 		var schedule_settings = snapshot.val();
 		console.log(schedule_settings);
@@ -55,6 +58,41 @@ function getActiveSchedule() {
 		addDefaultValues();
 
 	})
+}
+
+function verifyNextAlarm() {
+	var now = moment().format("HH:mm");
+
+	for(var i = 0; i < mySchedule.length; i++) {
+		var start = moment(mySchedule[i].start, "HH:mm:ss").format("HH:mm");
+		var stop = moment(mySchedule[i].stop, "HH:mm:ss").format("HH:mm");
+		
+		if(now == moment(start, "HH:mm").subtract(10, 'minutes').format("HH:mm")) {
+			console.log('sleep alarm');
+			Push.create("Este timpul pentru somn!", {
+				body: "In 10 minute ar trebui sa dormi.",
+				timeout: 2000,
+				onClick: function () {
+					window.focus();
+					this.close();
+				}
+			});
+		}
+		
+		if(now == stop) {
+			console.log('wake alarm');
+			Push.create("Este timpul pentru somn!", {
+				body: "In 10 minute ar trebui sa dormi.",
+				timeout: 2000,
+				onClick: function () {
+					window.focus();
+					this.close();
+				}
+			});
+		}
+	}
+
+	setTimeout(verifyNextAlarm, 1000 * minute);
 }
 
 function viewBars () {
@@ -134,9 +172,33 @@ function getSleepRecords() {
 
 		sleep_record = _.sortBy(sleep_record, 'start');
 		sleep_record = _.groupBy(sleep_record, 'day');
+		calculateScore();
 		generateSleepRecords();
 
 	});
+}
+
+var score = {};
+
+function calculateScore() {
+	for (var i in sleep_record) {
+		for (var j = 0; j < sleep_record[i].length; j++) {
+			score[i] = 86;
+		}
+	}
+	drawScoreBlocks();
+	console.log(score);
+}
+
+function drawScoreBlocks() {
+	document.getElementById('sleepScore').innerHTML = '';
+	for(var p = moment(first_day).format('YYYY-MM-DD'); p < moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
+		var span = document.createElement('span');
+		var text_span = document.createTextNode(score[p] ? score[p] : '0');
+		span.appendChild(text_span);
+
+		document.getElementById('sleepScore').appendChild(span);
+	}
 }
 
 function refreshSleepRecords() {
@@ -147,21 +209,21 @@ function refreshSleepRecords() {
 
 	removeTableRows();
 	var bars = document.querySelectorAll('rect:not(.default_bar)');
-		
-		for(var i = 0; i < bars.length; i++) {
-			bars[i].parentNode.parentNode.removeChild(bars[i].parentNode);
-		}
 
-		dRange = [d3.time.day.floor(new Date(first_day)), 
+	for(var i = 0; i < bars.length; i++) {
+		bars[i].parentNode.parentNode.removeChild(bars[i].parentNode);
+	}
+
+	dRange = [d3.time.day.floor(new Date(first_day)), 
 	d3.time.day.ceil(new Date(last_day))];
 
 	height = ((dRange[1]-dRange[0])/(24*60*60*1000))* barSize * 1.5;
 
-	 x = d3.time.scale()		
+	x = d3.time.scale()		
 	.domain([0,24])
 	.range([0, width]);
 
-	 y =d3.time.scale()
+	y =d3.time.scale()
 	.domain(dRange)
 	.range([0, height]);
 
@@ -169,6 +231,7 @@ function refreshSleepRecords() {
 	viewBars();
 	addDefaultValues();
 	generateSleepRecords();
+	drawScoreBlocks();
 }
 
 function generateSleepRecords() {
