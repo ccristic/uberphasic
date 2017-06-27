@@ -96,16 +96,25 @@
 			firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 				var schedule_settings = snapshot.val();
 				createContainer(schedule_settings.schedule);
-
 				mySchedule = schedules[schedule_settings.schedule];
 				mySchedule2 = schedules[schedule_settings.schedule];
-				console.log(mySchedule);
-				console.log(mySchedule2);
+	
 
 				myChart = createChart(mySchedule, schedule_settings.schedule);
 				generateScheduleStatistics();
 
 				createAlarms();
+				console.log(mySchedule);
+				flatpickr('.flatpickr-ora', {
+			        enableTime: true,
+			        noCalendar: true,
+			        time_24hr: true,
+			        dateFormat: "H:i",
+			        defaultDate: moment().startOf('day').add(schedule_settings.my_schedule.naps[0].start, 'minutes').format('HH:mm'),
+			        defaultHour: 0,
+			        defaultMinute: 0
+			    });
+
 			})
  			 // ...
  			};
