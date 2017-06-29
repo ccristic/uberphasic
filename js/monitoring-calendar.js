@@ -13,18 +13,24 @@ var tip = d3.tip()
 
 })
 
-
-
+var data = [];
 var sleep_record;
 var schedule_settings;
 
+function app() {
+    getActiveSchedule();
+}
 
-
-function getSleepRecords() {
+function getActiveSchedule() {
     firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
         schedule_settings = snapshot.val();
-        console.log(schedule_settings);
-    });
+        getSleepRecords();
+    })
+
+}
+
+function getSleepRecords() {
+
     firebase.database().ref('/sleep_record/' + currentUser.uid).on('value', function(snapshot) {
         sleep_record = snapshot.val();
         sleep_record = _.map(sleep_record, function(value, key) {
@@ -33,18 +39,16 @@ function getSleepRecords() {
         });
 
         sleep_record = _.sortBy(sleep_record, 'start');
-        sleep_record = _.groupBy(sleep_record, 'day');
-        
-
+        sleep_record = _.groupBy(sleep_record, 'day');  
+        console.log(schedule_settings);
+        calculateCalendarScore();
+        generateCalendar();
     });
-
-    generateCalendar();
-    calculateCalendarScore();
 }
 
-var score = {};
-
+var score = {}; 
 function calculateCalendarScore() {
+
     for (var i in sleep_record) {
         var total_sleep = 0;
         
@@ -93,16 +97,14 @@ function calculateCalendarScore() {
             score[i] = 0;
         if(score[i] >= 90)
             score[i] = 100;
-        
+
         data.push({
             date: moment(new Date(i)).format('DD/MM/YY'),
             value: score[i]
         });
     }
-    
 }
 
-verifyIfConnected(getSleepRecords);
 
 var cellSize = 17;
 var xOffset=20;
@@ -126,6 +128,7 @@ var yOffset=60;
         var dates = new Array();
         var values = new Array();
         
+        console.log(data);
         //parse the data
         data.forEach(function(d)    {
             dates.push(parseDate(d.date));
@@ -248,6 +251,7 @@ var yOffset=60;
         .attr("transform","translate("+(xOffset+calX)+","+calY+")")
         .attr("d", monthPath);
         
+        console.log(cals);
         //retreive the bounding boxes of the outlines
         var BB = new Array();
         var mp = document.getElementById("monthOutlines").childNodes;
@@ -310,9 +314,9 @@ var yOffset=60;
             }
         });
      }
-     
 
-     
+
+
     //pure Bostock - compute and return monthly path data for any year
     function monthPath(t0) {
       var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
