@@ -44,20 +44,20 @@ function getActiveSchedule() {
 	setTimeout(verifyNextAlarm, 1000 * minute);
 	firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
 		schedule_settings = snapshot.val();
-		console.log(schedule_settings);
 		var currentSchedule = schedule_settings.my_schedule;
 		for(var i = 0; i < currentSchedule.naps.length; i++)
 		{
 			mySchedule.push(
-			{
-				"start" : moment.utc().startOf('day').add(currentSchedule.naps[i].start, 'minutes').format('HH:mm:ss'),
-				"stop" : moment.utc().startOf('day').add(currentSchedule.naps[i].stop, 'minutes').format('HH:mm:ss')
-			}
+                {
+                    "start" : moment.utc().startOf('day').add(currentSchedule.naps[i].start, 'minutes').format('HH:mm:ss'),
+                    "stop" : moment.utc().startOf('day').add(currentSchedule.naps[i].stop, 'minutes').format('HH:mm:ss')
+                }
 			)
 		}
 		viewBars();
 		addDefaultValues();
-		
+        getSleepRecords();
+
 	})
 }
 
@@ -69,7 +69,6 @@ function verifyNextAlarm() {
 		var stop = moment(mySchedule[i].stop, "HH:mm:ss").format("HH:mm");
 		
 		if(now == moment(start, "HH:mm").subtract(10, 'minutes').format("HH:mm")) {
-			console.log('sleep alarm');
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
 				onClick: function () {
@@ -80,7 +79,6 @@ function verifyNextAlarm() {
 		}
 		
 		if(now == stop) {
-			console.log('wake alarm');
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
 				onClick: function () {
@@ -148,7 +146,6 @@ function viewBars () {
 
 function app() {
 	getActiveSchedule();
-	getSleepRecords();
 }
 
 var sleep_record;
@@ -221,7 +218,6 @@ function calculateScore() {
 		}
 		var oversleep = total_sleep - slept;
 		var debt = to_sleep - slept;
-		console.log(to_sleep, slept, debt, oversleep, total_sleep, i, j);
 		score[i] = (to_sleep - debt * 0.5) - oversleep * 0.7;
 		score[i] = (score[i] * 100) / to_sleep;
 		score[i] = score[i].toFixed(0);
