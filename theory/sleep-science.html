@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Istoric</title>
+	<title>Somnul</title>
 	<link rel="stylesheet" type="text/css" href="../less/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/typography.css"/>
-	<link rel="stylesheet" type="text/css" href="../less/style-history.css"/>
+	<link rel="stylesheet" type="text/css" href="../less/theory-sleep-science.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
-	<script type="text/javascript" src="../js/monitoring-history.js"></script>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -18,9 +19,9 @@
 		</a>
 		<ul class="menu-icons noselect">
 			<li><a href="../dashboard/dashboard.html" class="tooltip pointer">A <span class="tooltiptext">Dashboard</span></a></li>
-			<li><a class="active-icon tooltip default">B <span class="tooltiptext active-tooltip">Monitorizare</span></a></li>
+			<li><a href="../monitoring/sleep.html" class="tooltip pointer">B <span class="tooltiptext">Monitorizare</span></a></li>
 			<li><a href="../schedules/schedules.html" class="tooltip pointer">C <span class="tooltiptext">Sabloane</span></a></li>
-			<li><a href="../theory/all-schedules.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>
+			<li><a class="active-icon tooltip default">D <span class="tooltiptext active-tooltip">Teorie</span></a></li>
 		</ul>
 		<div class="dropdown noselect">
 			<button class="dropbtn pointer">F</button>
@@ -34,20 +35,22 @@
 	</div>
 
 	<div class="wrapper">
-		<div id="top-navbar">
-			<ul class="navbar noselect">
-				<li><a href="sleep.html">Somn</a></li>
-				<li><a href="my-schedule.html">Sablonul meu</a></li>
-				<li><a class="active-navbar default">Istoric</a></li>
-				<li><a href="calendar.html">Calendar</a></li>		
-			</ul>
-		</div>
+		<ul class="navbar noselect">
+			<li><a class="active-navbar default">Somnul</a></li>
+            <li><a href="polyphasic-sleep.html">Polyphasic Sleep</a></li>
+			<li><a href="applications.html">Utilizari</a></li>
+			<li><a href="health.html">Sanatate</a></li>
+		</ul>
 	</div>
-
+	<script type="text/javascript" src="../js/theory-sleep-science.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-	<script src="../js/firebase-config.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-	
-	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script type="text/javascript" src="../js/verify-connected-user.js"></script>
+    <script>
+  		function app() {
+  			console.log('app');
+  		} 
+  		verifyIfConnected(app);
+    </script>
 </body>
 </html>

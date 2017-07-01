@@ -145,7 +145,7 @@ var yOffset=60;
         .entries(data);
         
         var svg = d3.select(".wrapper").append("svg")
-        .attr("width","90%")
+        .attr("width","100%")
         .attr("viewBox","0 0 "+(xOffset+width)+" 540")
         
         //title
