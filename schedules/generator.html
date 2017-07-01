@@ -5,10 +5,11 @@
 	<link rel="stylesheet" type="text/css" href="../less/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/typography.css"/>
-	<link rel="stylesheet" type="text/css" href="../less/style-generator.css"/>
+	<link rel="stylesheet" type="text/css" href="../less/schedules-generator.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
-	<script type="text/javascript" src="../js/schedules-generator.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+
 </head>
 
 <body>
@@ -39,9 +40,48 @@
 				<li><a href="schedules.html">Sabloane</a></li>
 				<li><a class="active-navbar default">Generator</a></li>
 				<li><a href="custom-schedule.html">Personalizare program</a></li>
-				<li><a href="adaptation.html">Adaptare</a></li>
+				<li><a href="adaptation.html">Adaqptare</a></li>
 			</ul>
 		</div>
+
+		<div class = "add_sleep">
+			<input id="start-nap" class="flatpickr-ora" type="text">
+			<input id="stop-nap" class="flatpickr-ora" type="text"> 
+			<button type="button" class="button-action" onclick="takeNapValuesFromInputs();">Add Task</button>
+		</div>
+
+		<table align='center' id="data_table">
+			<thead>
+				<tr>
+					<th>Start hour</th>
+					<th>Stop hour</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="row1">
+					
+				</tr>
+			</tbody>
+		</table>
+
+		<button type="button" class="button-action" onclick="generate();">Generate</button>
+
 	</div>
+
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script src="../js/firebase-config.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+	
+	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://unpkg.com/flatpickr"></script>
+
+	<script src="../js/table_script_generator.js"></script>
+	<script src="../js/schedules-generator.js"></script>
+
+	<script>
+		verifyIfConnected(app);
+	</script>
 </body>
 </html>

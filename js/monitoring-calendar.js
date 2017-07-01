@@ -25,7 +25,7 @@ function getActiveSchedule() {
     firebase.database().ref('/schedule_settings/' + currentUser.uid).once('value').then(function(snapshot) {
         schedule_settings = snapshot.val();
         getSleepRecords();
-    })
+    });
 
 }
 
@@ -43,6 +43,8 @@ function getSleepRecords() {
         console.log(schedule_settings);
         calculateCalendarScore();
         generateCalendar();
+        document.querySelector('.wrapper').classList.remove('hide-div');
+        document.querySelector('.spinner-wrapper').classList.add('hide-div');
     });
 }
 

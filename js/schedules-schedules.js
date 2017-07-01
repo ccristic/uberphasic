@@ -85,7 +85,7 @@ function  createContainer(canvasId) {
     scheduleList.appendChild(text_wrapper);
 
     canvas = document.createElement('button');
-    canvas.className = "apply_button";
+    canvas.className = "apply_button button-action";
     canvas.setAttribute('schedule', canvasId);
     canvas.addEventListener("click", assignScheduleToUser);
     canvasContainer = document.createTextNode('Apply');

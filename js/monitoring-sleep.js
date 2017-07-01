@@ -1,8 +1,8 @@
 var mySchedule = [];
 
 
-var first_day = '2017-05-13';
-var last_day = '2017-06-14';
+var first_day = moment().subtract(1, 'month').format("YYYY-MM-DD"); 
+var last_day = moment().format("YYYY-MM-DD");
 
 var first = first_day,
 last = last_day,
@@ -57,7 +57,7 @@ function getActiveSchedule() {
 		}
 		viewBars();
 		addDefaultValues();
-
+		
 	})
 }
 
@@ -83,7 +83,6 @@ function verifyNextAlarm() {
 			console.log('wake alarm');
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
-				timeout: 2000,
 				onClick: function () {
 					window.focus();
 					this.close();
@@ -174,7 +173,8 @@ function getSleepRecords() {
 		sleep_record = _.groupBy(sleep_record, 'day');
 		calculateScore();
 		generateSleepRecords();
-
+		document.querySelector('.wrapper').classList.remove('hide-div');
+		document.querySelector('.spinner-wrapper').classList.add('hide-div');
 	});
 }
 
@@ -221,13 +221,13 @@ function calculateScore() {
 		}
 		var oversleep = total_sleep - slept;
 		var debt = to_sleep - slept;
-		console.log(to_sleep, slept, debt, oversleep, total_sleep);
-		score[i] = slept - oversleep * 0.5;
+		console.log(to_sleep, slept, debt, oversleep, total_sleep, i, j);
+		score[i] = (to_sleep - debt * 0.5) - oversleep * 0.7;
 		score[i] = (score[i] * 100) / to_sleep;
 		score[i] = score[i].toFixed(0);
 		if(score[i] < 0)
 			score[i] = 0;
-		if(score[i] >= 90)
+		if(score[i] >= 97)
 			score[i] = 100;
 		score[i] += '%';
 	}
@@ -288,7 +288,7 @@ function refreshSleepRecords() {
 }
 
 function generateSleepRecords() {
-	for(var p = moment(first_day).format('YYYY-MM-DD'); p < moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
+	for(var p = moment(first_day).format('YYYY-MM-DD'); p <= moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
 		if(sleep_record[p])
 			for( i=0; i<sleep_record[p].length;i++) {
 				addTask(sleep_record[p][i]);
@@ -415,7 +415,8 @@ function generateSleepRecords() {
 	});
 
 	flatpickr('.flatpickr-range', {
-		mode: "range"
+		mode: "range",
+		defaultDate: [first_day, last_day]
 	});
 
 	function takeNapValuesFromInputs() {

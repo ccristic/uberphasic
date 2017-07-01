@@ -12,6 +12,14 @@
 </head>
 
 <body>
+	<div class="spinner-wrapper">
+		<div class="spinner">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+	</div>
+
 	<div class="sidebar">
 		<a class="noselect pointer">
 			<span class = "sidebar-logo">E</span>
@@ -33,7 +41,7 @@
 		</div>
 	</div>
 
-	<div class="wrapper">
+	<div class="wrapper hide-div">
 		<div id="top-navbar">
 			<ul class="navbar noselect">
 				<li><a href="sleep.html">Somn</a></li>
@@ -114,6 +122,10 @@
 			        defaultHour: 0,
 			        defaultMinute: 0
 			    });
+			    startRotateChart();
+				document.getElementById('save-button').disabled = true;
+				document.querySelector('.wrapper').classList.remove('hide-div');
+				document.querySelector('.spinner-wrapper').classList.add('hide-div');
 
 			})
  			 // ...
