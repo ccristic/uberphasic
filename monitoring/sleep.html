@@ -51,25 +51,24 @@
 			<ul class="navbar noselect">
 				<li><a class="active-navbar default">Somn</a></li>
 				<li><a href="my-schedule.html">Sablonul meu</a></li>
-				<li><a href="calendar.html">Calendar</a></li>		
+				<li><a href="calendar.html">Calendar</a></li>
 			</ul>
 		</div>
 
 		<div class = "add_sleep">
 			<input id="calendar" class="flatpickr-data" type="text">
 			<input id="start-nap" class="flatpickr-ora" type="text">
-			<input id="stop-nap" class="flatpickr-ora" type="text"> 
-			<button type="button" class="button-action" onclick="takeNapValuesFromInputs();">Add Task</button>
+			<input id="stop-nap" class="flatpickr-ora" type="text">
+			<button type="button" class="button-action" onclick="takeNapValuesFromInputs();">Add Sleep</button>
 		</div>
 
-		<div>
-			<input id="range-date" class="flatpickr-range" type="text"> 
-			<button type="button" class="button-action" onclick="refreshSleepRecords()">Set interval</button>
-		</div>
-		
 		<div class="gantt-container">
 			<div class="gantt"></div>
 			<div id="sleepScore"></div>
+		</div>
+		<div class="range-gantt">
+			<label>Selecteaza interval: </label>
+			<input id="range-date" class="flatpickr-range" type="text" onchange="refreshSleepRecords()">
 		</div>
 
 		<table align='center' id="data_table">
@@ -82,11 +81,8 @@
 			</thead>
 			<tbody>
 				<tr id="row1">
-					
 				</tr>
 			</tbody>
-			
-			
 		</table>
 
 
@@ -94,7 +90,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="../js/firebase-config.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-	
+
 	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
 	<script src="https://unpkg.com/flatpickr"></script>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
@@ -104,13 +100,13 @@
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.13/push.min.js"></script>
 
-	
+
 
 	<script src="../js/monitoring-sleep.js"></script>
 
 	<script>
 		verifyIfConnected(app);
 	</script>
-	
+
 </body>
 </html>

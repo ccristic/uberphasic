@@ -39,7 +39,7 @@ button:hover {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-action {
-  border-radius: 80px;
+  border-radius: 3px;
   padding: 8px 30px;
   background-color: #1dffa7;
   border: none;
@@ -51,6 +51,23 @@ button:hover {
   outline: none;
 }
 .button-action:hover {
+  background-color: #7a7cc7;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.button-change {
+  border-radius: 3px;
+  padding: 8px 30px;
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7a7cc7;
+  cursor: pointer;
+  outline: none;
+}
+.button-change:hover {
   background-color: #7a7cc7;
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -193,6 +210,10 @@ button[disabled]:hover {
   margin: 10px 10%;
   height: 48px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 .login-button:hover {
   background-color: #1dffa7;

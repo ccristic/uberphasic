@@ -39,7 +39,7 @@ button:hover {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-action {
-  border-radius: 80px;
+  border-radius: 3px;
   padding: 8px 30px;
   background-color: #1dffa7;
   border: none;
@@ -51,6 +51,23 @@ button:hover {
   outline: none;
 }
 .button-action:hover {
+  background-color: #7a7cc7;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.button-change {
+  border-radius: 3px;
+  padding: 8px 30px;
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7a7cc7;
+  cursor: pointer;
+  outline: none;
+}
+.button-change:hover {
   background-color: #7a7cc7;
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,6 +189,19 @@ path.domain {
   display: flex;
   margin-top: 30px;
 }
+input#calendar,
+input#start-nap,
+input#stop-nap {
+  width: 200px;
+}
+.range-gantt label {
+  color: #7a7cc7;
+  line-height: 2.7;
+  font-weight: 600;
+}
+.range-gantt #range-date {
+  width: 200px;
+}
 .flatpickr-time,
 .flatpickr-calendar {
   -webkit-box-shadow: none !important;
@@ -222,6 +252,7 @@ button.delete {
   color: #7a7cc7;
   margin-left: 5px;
   text-transform: capitalize;
+  cursor: pointer;
 }
 button.save {
   color: #2f304e;
@@ -263,6 +294,9 @@ button.button-table {
 }
 .v-align {
   vertical-align: middle;
+}
+#data_table {
+  margin-top: 30px;
 }
 #data_table th {
   color: #7a7cc7;

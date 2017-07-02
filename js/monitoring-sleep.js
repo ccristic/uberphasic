@@ -1,12 +1,12 @@
 var mySchedule = [];
 
 
-var first_day = moment().subtract(1, 'month').format("YYYY-MM-DD"); 
+var first_day = moment().subtract(1, 'month').format("YYYY-MM-DD");
 var last_day = moment().format("YYYY-MM-DD");
 
 var first = first_day,
 last = last_day,
-dRange = [d3.time.day.floor(new Date(first_day)), 
+dRange = [d3.time.day.floor(new Date(first_day)),
 d3.time.day.ceil(new Date(last_day))];
 
 var m = {top: 40, right: 20, bottom: 20, left: 60},
@@ -27,7 +27,7 @@ var tip = d3.tip()
 	return "<strong>Start:</strong> <span style='color:#7a7cc7'>" + moment(new Date(d.start)).format("MM/DD HH:mm") + " </span> <strong>End: </strong><span style='color:#7a7cc7'>" + moment(new Date(d.stop)).format("MM/DD HH:mm") + "</span>";
 })
 
-var x = d3.time.scale()		
+var x = d3.time.scale()
 .domain([0,24])
 .range([0, width]);
 
@@ -67,7 +67,7 @@ function verifyNextAlarm() {
 	for(var i = 0; i < mySchedule.length; i++) {
 		var start = moment(mySchedule[i].start, "HH:mm:ss").format("HH:mm");
 		var stop = moment(mySchedule[i].stop, "HH:mm:ss").format("HH:mm");
-		
+
 		if(now == moment(start, "HH:mm").subtract(10, 'minutes').format("HH:mm")) {
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
@@ -77,7 +77,7 @@ function verifyNextAlarm() {
 				}
 			});
 		}
-		
+
 		if(now == stop) {
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
@@ -113,9 +113,9 @@ function viewBars () {
 
 	/* add bars to chart */
 
-	
-	
-	
+
+
+
 	/*add axes and grid*/
 
 	var xAxis = d3.svg.axis()
@@ -131,7 +131,7 @@ function viewBars () {
 
 	ganttSvg.append("g")
 	.attr("class", "x top axis")
-	.call(xAxis.orient("top"));	
+	.call(xAxis.orient("top"));
 	ganttSvg.append("g")
 	.attr("class","x grid")
 	.call(xGrid
@@ -155,14 +155,14 @@ function getSleepRecords() {
 	firebase.database().ref('/sleep_record/' + currentUser.uid).on('value', function(snapshot) {
 		removeTableRows();
 		var bars = document.querySelectorAll('rect:not(.default_bar)');
-		
+
 		for(var i = 0; i < bars.length; i++) {
 			bars[i].parentNode.parentNode.removeChild(bars[i].parentNode);
 		}
 
 		sleep_record = snapshot.val();
 		sleep_record = _.map(sleep_record, function(value, key) {
-			value.id = key; 
+			value.id = key;
 			return value;
 		});
 
@@ -180,18 +180,18 @@ var score = {};
 function calculateScore() {
 	for (var i in sleep_record) {
 		var total_sleep = 0;
-		
+
 		var slept = 0;
 
 		for (var j = 0; j < sleep_record[i].length; j++) {
 			var start_nap = moment(sleep_record[i][j].start).format("HH:mm:ss");
 			start_nap = moment(start_nap, "HH:mm:ss");
 			start_nap = start_nap.hours() * 60 + start_nap.minutes();
-			
+
 			var stop_nap = moment(sleep_record[i][j].stop).format("HH:mm:ss");
 			stop_nap = moment(stop_nap, "HH:mm:ss");
 			stop_nap = stop_nap.hours() * 60 + stop_nap.minutes();
-			
+
 			total_sleep += stop_nap - start_nap;
 			var to_sleep = 0;
 
@@ -200,7 +200,7 @@ function calculateScore() {
 				var stop_to_sleep = schedule_settings.my_schedule.naps[k].stop;
 
 				to_sleep += stop_to_sleep - start_to_sleep;
-				
+
 				if(start_nap <= start_to_sleep && stop_nap > start_to_sleep) {
 					if(stop_nap >= stop_to_sleep)
 						slept += stop_to_sleep - start_to_sleep;
@@ -235,7 +235,7 @@ function drawScoreBlocks() {
 	for(var p = moment(first_day).format('YYYY-MM-DD'); p <= moment(last_day).format('YYYY-MM-DD'); p = moment(p).add(1, 'days').format("YYYY-MM-DD")) {
 		var span = document.createElement('span');
 
-		
+
 		if(score[p] != null) {
 			var text_span = document.createTextNode(score[p]);
 		}
@@ -263,12 +263,12 @@ function refreshSleepRecords() {
 		bars[i].parentNode.parentNode.removeChild(bars[i].parentNode);
 	}
 
-	dRange = [d3.time.day.floor(new Date(first_day)), 
+	dRange = [d3.time.day.floor(new Date(first_day)),
 	d3.time.day.ceil(new Date(last_day))];
 
 	height = ((dRange[1]-dRange[0])/(24*60*60*1000))* barSize * 1.5;
 
-	x = d3.time.scale()		
+	x = d3.time.scale()
 	.domain([0,24])
 	.range([0, width]);
 
@@ -318,7 +318,7 @@ function generateSleepRecords() {
 		return x(xh);
 	})
 
-		.attr("y",function(d) { 
+		.attr("y",function(d) {
 			return y(d3.time.day.floor(new Date(d.start)))
 		})
 
@@ -362,7 +362,7 @@ function generateSleepRecords() {
 		xh = parseFloat(h[0])+parseFloat(h[1]/60); //time (hour and minute) as decimal
 		return x(xh);
 	})
-		.attr("y",function(d) { 
+		.attr("y",function(d) {
 			return y(d3.time.day.floor(new Date(d.start)))
 		})
 		.attr("width",function(d){
@@ -384,7 +384,7 @@ function generateSleepRecords() {
 		for(var p = moment(new Date(first_day)).format("YYYY-MM-DD"); p <= moment(new Date(last_day)).format("YYYY-MM-DD"); p = moment(p).add(1, 'days').format("YYYY-MM-DD"))
 		{
 			for(var y = 0; y < mySchedule.length; y++)
-			{	
+			{
 				interval = {start: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].start, stop: moment(p).format("YYYY-MM-DD") + ' ' + mySchedule[y].stop};
 				addDefaultTask(interval);
 			}
@@ -405,7 +405,7 @@ function generateSleepRecords() {
 		noCalendar: true,
 		time_24hr: true,
 		dateFormat: "H:i",
-		defaultDate: "0:00", 
+		defaultDate: "0:00",
 		defaultHour: 0,
 		defaultMinute: 0
 	});
@@ -419,12 +419,17 @@ function generateSleepRecords() {
 		var day = document.getElementById('calendar').value;
 		var start_hour = document.getElementById('start-nap').value;
 		var stop_hour = document.getElementById('stop-nap').value;
+		if (stop_hour == "00:00") {
+			stop_hour = "23:59";
+			console.log(stop_hour);
+		}
 		if(moment(stop_hour,"HH:mm").diff(moment(start_hour,"HH:mm"), 'minutes') >= 0)
 		{
 			var nap = {start: day + ' ' + start_hour + ':00', stop: day + ' ' + stop_hour + ':00'};
 			addTaskFromUI(nap);
 		}
 		else {
-			console.log('error');
+			var nap = {start: day + ' ' + stop_hour + ':00', stop: day + ' ' + start_hour + ':00'};
+			addTaskFromUI(nap);
 		}
 	};

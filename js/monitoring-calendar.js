@@ -1,11 +1,11 @@
-    
+
 var title="Scor";
 var units=" dead or missing";
 var breaks=[10,25,50,75];
 var colours=["rgba(29,255,167, 0.2)","rgba(29,255,167, 0.4)","rgba(29,255,167, 0.6)","rgba(29,255,167, 0.8)","rgba(29,255,167, 1)"];
 
 
-var tip = d3.tip()  
+var tip = d3.tip()
 .attr('class', 'd3-tip')
 .offset([-10, 0])
 .html(function(d) {
@@ -34,12 +34,12 @@ function getSleepRecords() {
     firebase.database().ref('/sleep_record/' + currentUser.uid).on('value', function(snapshot) {
         sleep_record = snapshot.val();
         sleep_record = _.map(sleep_record, function(value, key) {
-            value.id = key; 
+            value.id = key;
             return value;
         });
 
         sleep_record = _.sortBy(sleep_record, 'start');
-        sleep_record = _.groupBy(sleep_record, 'day');  
+        sleep_record = _.groupBy(sleep_record, 'day');
         console.log(schedule_settings);
         calculateCalendarScore();
         generateCalendar();
@@ -48,23 +48,23 @@ function getSleepRecords() {
     });
 }
 
-var score = {}; 
+var score = {};
 function calculateCalendarScore() {
 
     for (var i in sleep_record) {
         var total_sleep = 0;
-        
+
         var slept = 0;
 
         for (var j = 0; j < sleep_record[i].length; j++) {
             var start_nap = moment(sleep_record[i][j].start).format("HH:mm:ss");
             start_nap = moment(start_nap, "HH:mm:ss");
             start_nap = start_nap.hours() * 60 + start_nap.minutes();
-            
+
             var stop_nap = moment(sleep_record[i][j].stop).format("HH:mm:ss");
             stop_nap = moment(stop_nap, "HH:mm:ss");
             stop_nap = stop_nap.hours() * 60 + stop_nap.minutes();
-            
+
             total_sleep += stop_nap - start_nap;
             var to_sleep = 0;
 
@@ -73,7 +73,7 @@ function calculateCalendarScore() {
                 var stop_to_sleep = schedule_settings.my_schedule.naps[k].stop;
 
                 to_sleep += stop_to_sleep - start_to_sleep;
-                
+
                 if(start_nap <= start_to_sleep && stop_nap > start_to_sleep) {
                     if(stop_nap >= stop_to_sleep)
                         slept += stop_to_sleep - start_to_sleep;
@@ -92,13 +92,13 @@ function calculateCalendarScore() {
         var oversleep = total_sleep - slept;
         var debt = to_sleep - slept;
         console.log(to_sleep, slept, debt, oversleep, total_sleep);
-        score[i] = slept - oversleep * 0.5;
-        score[i] = (score[i] * 100) / to_sleep;
-        score[i] = score[i].toFixed(0);
-        if(score[i] < 0)
-            score[i] = 0;
-        if(score[i] >= 90)
-            score[i] = 100;
+        score[i] = (to_sleep - debt * 0.5) - oversleep * 0.7;
+    		score[i] = (score[i] * 100) / to_sleep;
+    		score[i] = score[i].toFixed(0);
+    		if(score[i] < 0)
+    			score[i] = 0;
+    		if(score[i] >= 97)
+    			score[i] = 100;
 
         data.push({
             date: moment(new Date(i)).format('DD/MM/YY'),
@@ -121,15 +121,15 @@ var yOffset=60;
     var data = [];
     function generateCalendar() {
     //general layout information
-    
-    
-    
-    
+
+
+
+
 
         //set up an array of all the dates in the data which we need to work out the range of the data
         var dates = new Array();
         var values = new Array();
-        
+
         console.log(data);
         //parse the data
         data.forEach(function(d)    {
@@ -139,22 +139,22 @@ var yOffset=60;
             d.value=d.value;
                 d.year=d.date.getFullYear();//extract the year from the data
             });
-        
+
         var yearlyData = d3.nest()
         .key(function(d){return d.year;})
         .entries(data);
-        
+
         var svg = d3.select(".wrapper").append("svg")
         .attr("width","100%")
         .attr("viewBox","0 0 "+(xOffset+width)+" 540")
-        
+
         //title
         svg.append("text")
         .attr("x",xOffset)
         .attr("y",20)
         .text(title);
         svg.call(tip);
-        
+
         //create an SVG group for each year
         var cals = svg.selectAll("g")
         .data(yearlyData)
@@ -165,15 +165,15 @@ var yOffset=60;
         })
 
         .attr("transform",function(d,i){
-            return "translate(0,"+(yOffset+(i*(height+calY)))+")";  
+            return "translate(0,"+(yOffset+(i*(height+calY)))+")";
         })
-        
+
         var labels = cals.append("text")
         .attr("class","yearLabel")
         .attr("x",xOffset)
         .attr("y",15)
         .text(function(d){return d.key});
-        
+
         //create a daily rectangle for each year
         var rects = cals.append("g")
         .attr("id","alldays")
@@ -187,13 +187,13 @@ var yOffset=60;
         .attr("class", "day")
         .attr("width", cellSize)
         .attr("height", cellSize)
-        
+
         .attr("x", function(d) {
             return xOffset+calX+(d3.time.weekOfYear(d) * cellSize);
         })
         .attr("y", function(d) { return calY+(d.getDay() * cellSize); })
         .datum(format);
-        
+
         //create day labels
         var days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
         var dayLabels=cals.append("g").attr("id","dayLabels")
@@ -205,13 +205,13 @@ var yOffset=60;
             .attr("dy","0.9em")
             .text(d);
         })
-        
+
         //let's draw the data on
         var dataRects = cals.append("g")
         .attr("id","dataDays")
         .selectAll(".dataday")
         .data(function(d){
-            return d.values;   
+            return d.values;
         })
 
         .enter()
@@ -236,23 +236,23 @@ var yOffset=60;
                 }
             }
             if (d.value>breaks.length-1){
-                return colours[breaks.length]   
+                return colours[breaks.length]
             }
-        })     
-        
+        })
+
         //add montly outlines for calendar
         cals.append("g")
         .attr("id","monthOutlines")
         .selectAll(".month")
-        .data(function(d) { 
+        .data(function(d) {
             return d3.time.months(new Date(parseInt(d.key), 0, 1),
-              new Date(parseInt(d.key) + 1, 0, 1)); 
+              new Date(parseInt(d.key) + 1, 0, 1));
         })
         .enter().append("path")
         .attr("class", "month")
         .attr("transform","translate("+(xOffset+calX)+","+calY+")")
         .attr("d", monthPath);
-        
+
         console.log(cals);
         //retreive the bounding boxes of the outlines
         var BB = new Array();
@@ -260,7 +260,7 @@ var yOffset=60;
         for (var i=0;i<mp.length;i++){
             BB.push(mp[i].getBBox());
         }
-        
+
         var monthX = new Array();
         BB.forEach(function(d,i){
             boxCentre = d.width/2;
@@ -278,7 +278,7 @@ var yOffset=60;
             .attr("y",calY/1.2)
             .text(d);
         })
-        
+
          //create key
          var key = svg.append("g")
          .attr("id","key")
@@ -286,7 +286,7 @@ var yOffset=60;
          .attr("transform",function(d){
             return "translate("+xOffset+","+(yOffset-(cellSize*1.5))+")";
         });
-         
+
          key.selectAll("rect")
          .data(colours)
          .enter()
@@ -299,7 +299,7 @@ var yOffset=60;
          .attr("fill",function(d){
             return d;
         });
-         
+
          key.selectAll("text")
          .data(colours)
          .enter()
@@ -312,7 +312,7 @@ var yOffset=60;
             if (i<colours.length-1){
                 return "up to "+breaks[i];
             }   else    {
-                return "100";   
+                return "100";
             }
         });
      }

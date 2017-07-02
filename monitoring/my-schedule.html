@@ -48,25 +48,75 @@
 			<ul class="navbar noselect">
 				<li><a href="sleep.html">Somn</a></li>
 				<li><a class="active-navbar default">Sablonul meu</a></li>
-				<li><a href="calendar.html">Calendar</a></li>		
+				<li><a href="calendar.html">Calendar</a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
-			<input id="start-nap" class="flatpickr-ora" type="text" onchange="startRotateChart()">
-			<div>
-				<button type="button" id="save-button" class="button-action" onclick="saveUpdatedSchedule()" disabled>Save</button>
+			<div class="left-half">
+				<input id="start-nap" class="flatpickr-ora" type="text" onchange="startRotateChart()">
+				<div>
+					<button type="button" id="save-button" class="button-action" onclick="saveUpdatedSchedule()" disabled>Save</button>
+				</div>
+				<div id="alarms">
+				</div>
+				<div id="statistics">
+					<table>
+						<tr>
+							<td>
+								<label>Total duration:</label>
+							</td>
+							<td>
+								<input id="total_duration" type="text" disabled>
+							</td>
+							<td>
+								<label>Awake time:</label>
+							</td>
+							<td>
+								<input id="active_duration" type="text" disabled>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="core">Cores:</label>
+							</td>
+							<td>
+								<input id="cores" type="text" disabled>
+							</td>
+							<td>
+								<label class="nap">Naps:</label>
+							</td>
+							<td>
+								<input id="naps" type="text" disabled>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="core">Core time:</label>
+							</td>
+							<td>
+								<input id="core_duration" type="text" disabled>
+							</td>
+							<td>
+								<label class="nap">Nap time:</label>
+							</td>
+							<td>
+								<input id="nap_duration" type="text" disabled>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
-			<div id="statistics">
-				<input id="total_duration" type="text" disabled>
-				<input id="active_duration" type="text" disabled>
-				<input id="cores" type="text" disabled>
-				<input id="naps" type="text" disabled>
-				<input id="core_duration" type="text" disabled>
-				<input id="nap_duration" type="text" disabled>
+			<div class="right-half">
+				<div class="schedule_pie">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div id="details">
+				</div>
+				<div id="right-align"></div>
 			</div>
-
 		</div>
 	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.13/push.min.js"></script>

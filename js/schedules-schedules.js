@@ -6,7 +6,7 @@ function getChartDataFromSchedule(schedule) {
 
         if(hours[hours.length-1] <= 1) {
             labels.push(' Nap');
-            colors.push('#ff3f68'); 
+            colors.push('#ff3f68');
         }
         else {
             labels.push(' Core');
@@ -14,19 +14,19 @@ function getChartDataFromSchedule(schedule) {
         }
 
         if (i< schedule.naps.length - 1) {
-            hours.push(((schedule.naps[i+1].start - schedule.naps[i].stop)/60).toFixed(2)); 
+            hours.push(((schedule.naps[i+1].start - schedule.naps[i].stop)/60).toFixed(2));
             colors.push('#3b3c5b');
             labels.push(' Awake');
         }
-        else { 
-            hours.push(((1440 - schedule.naps[i].stop)/60).toFixed(2)); 
-            colors.push('#3b3c5b'); 
-            labels.push(' Awake');   
+        else {
+            hours.push(((1440 - schedule.naps[i].stop)/60).toFixed(2));
+            colors.push('#3b3c5b');
+            labels.push(' Awake');
         }
     }
     return {
         type: 'pie',
-  
+
         options: {
             rotation: (-0.5 * Math.PI) - (360/180 * Math.PI),
             legend: {
@@ -37,7 +37,7 @@ function getChartDataFromSchedule(schedule) {
 
             datasets: [{
                 data: hours,
-                backgroundColor: colors,                        
+                backgroundColor: colors,
                 borderWidth: 0
             }],
             labels: labels
@@ -62,7 +62,7 @@ function  createContainer(canvasId) {
     canvasContainer.className = "schedule_pie";
     canvasContainer.id = "container-" + canvasId;
 
-    canvasContainer.appendChild(canvas);  
+    canvasContainer.appendChild(canvas);
     scheduleList.appendChild(canvasContainer);
     document.getElementById('wrapper').appendChild(scheduleList);
 
@@ -89,7 +89,7 @@ function  createContainer(canvasId) {
     canvas.setAttribute('schedule', canvasId);
     canvas.addEventListener("click", assignScheduleToUser);
     canvasContainer = document.createTextNode('Apply');
-    canvas.appendChild(canvasContainer);            
+    canvas.appendChild(canvasContainer);
 
     text_wrapper.appendChild(canvas);
     scheduleList.appendChild(text_wrapper);

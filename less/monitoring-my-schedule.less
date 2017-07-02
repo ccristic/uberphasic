@@ -1,3 +1,79 @@
+@import "colors";
+
 #wrapper {
-	width: 350px;
+	display: flex;
+	flex-direction: row;
+}
+
+.left-half {
+	width: 50%;
+}
+
+.right-half {
+	width: 25%;
+}
+
+#right-align {
+	float: right;
+	margin-top: 20px;
+}
+
+#statistics label {
+	color: @purple;
+	line-height: 2.7;
+	font-weight: 600;
+	margin-right: 20px;
+}
+
+#statistics input {
+	width: 40px;
+	border: none;
+}
+
+label.nap {
+	color: @nap !important;
+}
+
+label.core {
+	color: @core !important;
+}
+
+.flatpickr-time, .flatpickr-calendar {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	border: none !important;
+	position: relative;
+}
+
+.schedule_list {
+	display: flex;
+	flex-direction: row;
+	padding: 30px 0px;
+}
+
+.schedule_pie {
+	margin-top: 20px;
+	width: 100%;
+	min-width: 250px;
+}
+
+.schedule_title {
+	font-size: 22px;
+	font-weight: 600;
+	flex-direction: column;
+	color: white;
+	line-height: 40px;
+	margin-top: 20px;
+}
+.schedule_text {
+	width: 85%;
+	flex-direction: column;
+	margin: 30px 30px 0px 30px;
+}
+
+.schedule_description {
+	color: white;
+	line-height:24px;
+	text-align: justify;
 }
