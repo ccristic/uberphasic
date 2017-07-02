@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+		<script type="text/javascript" src="../json/schedules.json"></script>
+
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 
 </head>
@@ -47,7 +49,7 @@
 
 		<div class = "add_sleep">
 			<input id="start-nap" class="flatpickr-ora" type="text">
-			<input id="stop-nap" class="flatpickr-ora" type="text"> 
+			<input id="stop-nap" class="flatpickr-ora" type="text">
 			<button type="button" class="button-action" onclick="takeNapValuesFromInputs();">Add Task</button>
 		</div>
 
@@ -60,19 +62,22 @@
 			</thead>
 			<tbody>
 				<tr id="row1">
-					
+
 				</tr>
 			</tbody>
 		</table>
 
-		<button type="button" class="button-action" onclick="generate();">Generate</button>
+		<button type="button" class="button-action" onclick="functie();">Generate</button>
+
+		<p class="content-theory"> Sabloane disponibile</p>
+		<div id="schedule-generated"></div>
 
 	</div>
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="../js/firebase-config.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-	
+
 	<script type="text/javascript" src="../js/verify-connected-user.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

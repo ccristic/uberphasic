@@ -15,6 +15,18 @@ function app() {
 function takeNapValuesFromInputs() {
     var start_hour = document.getElementById('start-nap').value;
     var stop_hour = document.getElementById('stop-nap').value;
+		var hour_to_minutes1 = moment(start_hour, "HH:mm");
+		hour_to_minutes1 = hour_to_minutes1.hours() * 60 + hour_to_minutes1.minutes();
+		var hour_to_minutes2 = moment(stop_hour, "HH:mm");
+		hour_to_minutes2 = hour_to_minutes2.hours() * 60 + hour_to_minutes2.minutes();
+		console.log(hour_to_minutes1, hour_to_minutes2);
+		program.activities.push(
+							{
+									"start" : hour_to_minutes1,
+									"stop" : hour_to_minutes2
+							});
+		console.log(program);
+
     if(moment(stop_hour,"HH:mm").diff(moment(start_hour,"HH:mm"), 'minutes') >= 0)
     {
         var busy = {start: start_hour + ':00', stop: stop_hour + ':00'};
@@ -24,11 +36,7 @@ function takeNapValuesFromInputs() {
 };
 
 var program = {
-	activities: [
-	{start: 20, stop: 200},
-	{start: 600, stop: 900},
-	{start: 1400, stop: 1440}		
-	]
+	activities: []
 };
 
 function functie(){
@@ -41,8 +49,8 @@ function functie(){
 			for(var x = 0; x < schedules[l].naps.length; x++)
 				for(var y = 0; y < program.activities.length; y++)
 				{
-					if((program.activities[y].start >= schedules[l].naps[x].start && program.activities[y].start < schedules[l].naps[x].stop) || 
-						(program.activities[y].stop > schedules[l].naps[x].start && program.activities[y].stop < schedules[l].naps[x].stop) || 
+					if((program.activities[y].start >= schedules[l].naps[x].start && program.activities[y].start < schedules[l].naps[x].stop) ||
+						(program.activities[y].stop > schedules[l].naps[x].start && program.activities[y].stop < schedules[l].naps[x].stop) ||
 						(schedules[l].naps[x].start >= program.activities[y].start && schedules[l].naps[x].start < program.activities[y].stop) ||
 						(schedules[l].naps[x].stop > program.activities[y].start && schedules[l].naps[x].stop < program.activities[y].stop))
 					{
@@ -67,7 +75,7 @@ function functie(){
 					var item = document.createElement("li");
 					item.appendChild(document.createTextNode(l));
 					list.appendChild(item);
-					document.body.appendChild(list);
+					document.getElementById('schedule-generated').appendChild(list);
 					break;
 				}
 
@@ -83,7 +91,7 @@ function functie(){
 						schedules[l].naps[j].stop -= 1440;
 
 				}
-				
+
 			}
 		}
 	}
