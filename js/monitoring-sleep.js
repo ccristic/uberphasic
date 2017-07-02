@@ -71,6 +71,7 @@ function verifyNextAlarm() {
 		if(now == moment(start, "HH:mm").subtract(10, 'minutes').format("HH:mm")) {
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
+				icon: '../images/logo_symbol.png',
 				onClick: function () {
 					window.focus();
 					this.close();
@@ -81,6 +82,7 @@ function verifyNextAlarm() {
 		if(now == stop) {
 			Push.create("Este timpul pentru somn!", {
 				body: "In 10 minute ar trebui sa dormi.",
+				icon: '../images/logo_symbol.png',
 				onClick: function () {
 					window.focus();
 					this.close();
