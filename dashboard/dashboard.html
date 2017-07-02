@@ -5,23 +5,32 @@
 	<link rel="stylesheet" type="text/css" href="../less/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/typography.css"/>
-	<link rel="stylesheet" type="text/css" href="../less/style-dashboard.css"/>
+  <link rel="stylesheet" type="text/css" href="../less/monitoring-my-schedule.css"/>
+	<link rel="stylesheet" type="text/css" href="../less/dashboard.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../less/navbar.css"/>
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+    <div class="spinner-wrapper">
+		<div class="spinner">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+	</div>
 	<div class="sidebar">
 		<a class="noselect pointer">
 			<span class = "sidebar-logo">E</span>
 		</a>
 		<ul class="menu-icons noselect">
-			<li><a class="active-icon tooltip default">A <span class="tooltiptext active-tooltip">Dashboard</span></a></li>	
+			<li><a class="active-icon tooltip default">A <span class="tooltiptext active-tooltip">Dashboard</span></a></li>
 			<li><a href="../monitoring/sleep.html" class="tooltip pointer">B <span class="tooltiptext">Monitorizare</span></a></li>
 			<li><a href="../schedules/schedules.html" class="tooltip pointer">C <span class="tooltiptext">Sabloane</span></a></li>
-			<li><a href="../theory/sleep-science.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>	
+			<li><a href="../theory/sleep-science.html" class="tooltip pointer">D <span class="tooltiptext">Teorie</span></a></li>
 		</ul>
 		<div class="dropdown noselect">
 			<button class="dropbtn pointer">F</button>
@@ -34,22 +43,104 @@
 		</div>
 	</div>
 
-	<div class="wrapper">
+	<div class="wrapper hide-div">
+
 		<div id="top-navbar">
-		<ul class="navbar noselect">
-					
-			</ul>
+            <ul class="navbar noselect">
+							  <p class="sleep_left"></p>
+            </ul>
 		</div>
+
+        <div class="inline">
+            <div class="left-half">
+                <p class="label-start">Programul incepe de la:</p>
+			 					<input id="start-nap" class="" type="text" onchange="startRotateChart()">
+<p class="label-start">Alarme:</p>
+						<div id="alarms">
+						</div>
+						<div id="statistics">
+							<table>
+								<tr>
+									<td>
+										<label>Total duration:</label>
+									</td>
+									<td>
+										<input id="total_duration" type="text" disabled>
+									</td>
+									<td>
+										<label>Awake time:</label>
+									</td>
+									<td>
+										<input id="active_duration" type="text" disabled>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="core">Cores:</label>
+									</td>
+									<td>
+										<input id="cores" type="text" disabled>
+									</td>
+									<td>
+										<label class="nap">Naps:</label>
+									</td>
+									<td>
+										<input id="naps" type="text" disabled>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="core">Core time:</label>
+									</td>
+									<td>
+										<input id="core_duration" type="text" disabled>
+									</td>
+									<td>
+										<label class="nap">Nap time:</label>
+									</td>
+									<td>
+										<input id="nap_duration" type="text" disabled>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="right-half">
+						<div id="details">
+						</div>
+						<div class="schedule_pie">
+							<canvas id="myChart"></canvas>
+						</div>
+
+			</div>
+        </div>
+        <div class = "add_sleep">
+            <p class="label-start">Adauga somn:</p>
+			<input id="calendar" class="flatpickr-data" type="text">
+			<input id="start-sleep" class="flatpickr-ora" type="text">
+			<input id="stop-sleep" class="flatpickr-ora" type="text">
+			<button type="button" class="button-action" onclick="takeNapValuesFromInputs();">Add Sleep</button>
+		</div>
+
+
+
+
 	</div>
+
+    <script type="text/javascript" src="../json/schedules.json"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script src="https://unpkg.com/flatpickr"></script>
+
     <script src="../js/firebase-config.js"></script>
 
     <script type="text/javascript" src="../js/verify-connected-user.js"></script>
-	<script>
-  		function app() {
-  			console.log('app');
-  		}
 
+    <script type="text/javascript" src="../js/schedules-schedules.js"></script>
+
+    <script type="text/javascript" src="../js/dashboard.js"></script>
+	<script>
   		verifyIfConnected(app);
 </script>
 </body>

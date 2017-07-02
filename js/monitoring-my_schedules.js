@@ -86,20 +86,24 @@ function update(minutes) {
 
 function createAlarms() {
 	for (var i=0; i<mySchedule.naps.length; i ++) {
+        var alarmsDiv = document.createElement('div');
+        alarmsDiv.classList.add('row');
 		var new_input = document.createElement('input');
 		var offtime = 10; //notify me 10 minutes before bed time
 		var sleep_alarm =	moment().startOf('day').add(mySchedule.naps[i].start + hour_to_minutes - offtime, 'minutes').format('HH:mm');
 		new_input.value = sleep_alarm;
 		new_input.id = "sleep_alarm" + i;
 		new_input.setAttribute("readonly", true);
-		document.getElementById('alarms').appendChild(new_input);
+        alarmsDiv.appendChild(new_input);
 
 		new_input = document.createElement('input');
 		var wake_alarm =	moment().startOf('day').add(mySchedule.naps[i].stop + hour_to_minutes, 'minutes').format('HH:mm');
 		new_input.value = wake_alarm;
 		new_input.id = "wake_alarm" + i;
 		new_input.setAttribute("readonly", true);
-		document.getElementById('alarms').appendChild(new_input);
+        
+        alarmsDiv.appendChild(new_input);
+		document.getElementById('alarms').appendChild(alarmsDiv);
 	}
 }
 
@@ -145,29 +149,29 @@ document.getElementById('save-button').disabled = true;
 generateScheduleStatistics();
 }
 
-			function generateScheduleStatistics() {
-				var sleep_duration = 0, nap_duration = 0, core_duration = 0, total_duration = 0;
-				var naps = 0, cores = 0;
-				var active_duration = 0;
+function generateScheduleStatistics() {
+    var sleep_duration = 0, nap_duration = 0, core_duration = 0, total_duration = 0;
+    var naps = 0, cores = 0;
+    var active_duration = 0;
 
-				for(var i = 0; i < mySchedule2.naps.length; i++) {
-					sleep_duration = mySchedule2.naps[i].stop - mySchedule2.naps[i].start;
-					if(sleep_duration <= 60)
-						nap_duration += sleep_duration, naps++;
-					else
-						core_duration += sleep_duration, cores++;
-				}
-				total_duration = nap_duration + core_duration;
-				active_duration = 1440 - total_duration;
+    for(var i = 0; i < mySchedule2.naps.length; i++) {
+        sleep_duration = mySchedule2.naps[i].stop - mySchedule2.naps[i].start;
+        if(sleep_duration <= 60)
+            nap_duration += sleep_duration, naps++;
+        else
+            core_duration += sleep_duration, cores++;
+    }
+    total_duration = nap_duration + core_duration;
+    active_duration = 1440 - total_duration;
 
-				nap_duration =	moment().startOf('day').add(nap_duration, 'minutes').format('HH:mm');
-				core_duration =	moment().startOf('day').add(core_duration, 'minutes').format('HH:mm');
-				total_duration =	moment().startOf('day').add(total_duration, 'minutes').format('HH:mm');
-				active_duration =	moment().startOf('day').add(active_duration, 'minutes').format('HH:mm');
-				document.getElementById('total_duration').value = total_duration;
-				document.getElementById('active_duration').value = active_duration;
-				document.getElementById('cores').value = cores;
-				document.getElementById('naps').value = naps;
-				document.getElementById('core_duration').value = core_duration;
-				document.getElementById('nap_duration').value = nap_duration;
-			}
+    nap_duration =	moment().startOf('day').add(nap_duration, 'minutes').format('HH:mm');
+    core_duration =	moment().startOf('day').add(core_duration, 'minutes').format('HH:mm');
+    total_duration =	moment().startOf('day').add(total_duration, 'minutes').format('HH:mm');
+    active_duration =	moment().startOf('day').add(active_duration, 'minutes').format('HH:mm');
+    document.getElementById('total_duration').value = total_duration;
+    document.getElementById('active_duration').value = active_duration;
+    document.getElementById('cores').value = cores;
+    document.getElementById('naps').value = naps;
+    document.getElementById('core_duration').value = core_duration;
+    document.getElementById('nap_duration').value = nap_duration;
+}

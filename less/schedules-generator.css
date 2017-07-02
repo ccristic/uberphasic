@@ -160,6 +160,15 @@ button[disabled]:hover {
 .hide-div {
   display: none;
 }
+.inline {
+  display: flex;
+}
+.content-theory {
+  color: white;
+  width: 80%;
+  text-align: justify;
+  margin-top: 30px;
+}
 button.edit,
 button.save,
 button.delete {
